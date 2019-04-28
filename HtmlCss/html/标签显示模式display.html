@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        /* 块 => 行内 display: inline; */
+        .div {
+            display: inline;
+            background: gold;
+
+        }
+
+        /* 行内 => 块 display: block; */
+        .sp-block {
+            width: 150px;
+            display: block;
+            background: rebeccapurple;
+        }
+
+        /* 行内 => 行内块 display: inline-block; */
+        .sp-inline {
+            width: 200px;
+            display: inline-block;
+            background: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- <h1>~<h6>、<p>、<div>、<ul>、<ol>、<li> -->
+    <!-- 块级元素 -->
+    <h3>h1h2h3h4块级元素</h3>
+    <p>p标签块级元素</p>
+    <div>div块级元素</div>
+    <ul>ul块级元素</ul>
+    <ol>ol块级元素</ol>
+    <li>li块级元素</li>
+
+    <!-- <a>、<strong>、<b>、<em>、<i>、<del>、<s>、<ins>、<u>、<span> -->
+    <!-- 行内元素 -->
+    <a>a行内元素</a>
+    <strong>strong行内元素</strong>
+    <b>b</b>
+    <em>em行内元素</em>
+    <i>i行内元素</i>
+    <del>del行内元素</del>
+    <s>s行内元素</s>
+    <ins>ins行内元素</ins>
+    <u>u行内元素</u>
+    <span>span行内元素</span>
+
+    <br>
+
+    <!-- <img>、<input>、<td> -->
+    <!-- 行内块元素 -->
+    <img src="../../img/jj.png">
+    <input placeholder="请输入姓名">
+    <td>tdtdtd</td>
+    <br>
+
+
+    <div class="div">我是div</div>
+    <span class="sp-block">我是块级span</span>
+    <span class="sp-inline">我是行内span</span>
+
+</body>
+
+</html>

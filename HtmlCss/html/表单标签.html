@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <fieldset>
+        <legend>input标签</legend>
+
+        <fieldset>
+            <legend>基础用法</legend>
+
+            <input type="text" placeholder="请输入用户名" value="邱航" maxlength="6"><br>
+
+            <input type="password" placeholder="请输入密码"><br>
+
+            <h5>性别：</h5>
+            <input type="radio" name="gender" checked>男
+            <input type="radio" name="gender">女
+
+            <h6>爱好</h6>
+            <input type="checkbox" name="hobby">篮球
+            <input type="checkbox" name="hobby">游泳
+            <input type="checkbox" name="hobby">手游 <br>
+
+            <input type="button" value="我是按钮"> <br>
+
+            <input type="submit" value="提交"><br>
+
+            <input type="reset" value="重置"><br>
+
+            <input type="image" src="../img/jj.png"><br>
+
+            <input type="file"><br>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>H5新增</legend>
+
+            <!-- type=email 会对输入的内容进行 邮箱格式验证 -->
+            邮箱: <input type="email"> <br>
+            <!-- type=number 限制输入内容必须是 数字 -->
+            数字: <input type="number"> <br>
+            <!-- type=url 限制提交内容必须是 网址 -->
+            网址: <input type="url"> <br>
+            <!-- type=search 具有搜索框的语义  有可以清空内容的效果 -->
+            搜索: <input type="search"><br>
+            <!-- type=range 小滑块 一般用于 音量调整，视频进度条 -->
+            滑块: <input type="range"><br>
+
+            时间: <input type="time"><br>
+            年月日： <input type="date"><br>
+            <!-- type month 选月份 -->
+            月份: <input type="month"><br>
+            星期: <input type="week"><br>
+            <!-- type color 取色板 -->
+            颜色: <input type="color"> <br>
+            <input type="submit" value="提交"><br>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>H5语义化属性</legend>
+            <!-- placeholder 提示文本 -->
+            <!-- autofocus 自动聚焦 -->
+            姓名：<input type="text" placeholder="请输入姓名" autofocus>
+
+            <!-- multiple 多文件上传 -->
+            <input type="file" multiple>
+
+            <!-- autocomplete 默认是开启的 -->
+            用户名：<input type="text" autocomplete="on" name="username"> <br>
+
+            <!-- required 必填项 -->
+            email:<input type="email" required>
+
+            <input type="submit">
+        </fieldset>
+
+
+    </fieldset>
+
+
+    <fieldset>
+        <legend>fieldset用法</legend>
+        姓名：<input placeholder="请输入姓名"></input><br>
+        部门：<input placeholder="请输入部门"></input>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>select用法</legend>
+        <select>
+            <option>软件部</option>
+            <option selected>通信部</option>
+            <option>硬件部</option>
+            <option>综合部</option>
+        </select>
+    </fieldset>
+
+    <fieldset>
+        <legend>datalist用法</legend>
+        <input list="department">
+
+        <!-- 类似模糊查询 -->
+        <datalist id="department">
+            <option>软件部</option>
+            <option>软件红</option>
+            <option>通信部</option>
+            <option>硬件部</option>
+            <option>综合部</option>
+        </datalist>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>textarea用法</legend>
+        <textarea cols="50" rows="10" placeholder="请输入内容"></textarea>
+    </fieldset>
+
+
+</body>
+
+</html>

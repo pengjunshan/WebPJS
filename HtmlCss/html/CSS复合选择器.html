@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        /* 类名既有tall 又有mm */
+        .tall.mm {
+            color: red
+        }
+
+        /* 首先是p标签 并且类名是sg */
+        p.sg {
+            color: red
+        }
+
+        /* 并集选择器 */
+        .woman,
+        p {
+            color: red
+        }
+
+        /* ul下子孙li都会变红 */
+        ul li {
+            color: blue;
+        }
+
+        /* ul下类名为pp的li变黑 */
+       ul li.pp {
+            color: black;
+        }
+
+         /* 
+        * box下子一级（儿子）的p标签才会变蓝色，
+        * 一级以下的都不会变（孙子） 
+        */
+        .box > p {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <fieldset>
+        <legend>交集选择器</legend>
+        <div class="tall">美女</div>
+        <div class="tall mm">大美女</div>
+
+        <p>帅哥</p>
+        <p class="sg">大帅哥</p>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>并集选择器</legend>
+        <div>并集</div>
+        <div class="woman">美女</div>
+        <p class="man">帅哥</p>
+    </fieldset>
+
+    <fieldset>
+        <legend>后代选择器</legend>
+        <ul>
+            <li>11111111111</li>
+            <li class="pp">22222222222</li>
+            <li>33333333333</li>
+        </ul>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>子代选择器</legend>
+        <div class="box">
+            <p>1111111</p>
+
+            <div>
+                <p>22222222</p>
+            </div>
+
+        </div>
+    </fieldset>
+
+
+</body>
+
+</html>

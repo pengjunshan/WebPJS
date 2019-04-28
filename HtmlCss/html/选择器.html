@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        /* 标签选择器 */
+        p {
+            font-size: 20px;
+        }
+
+        /* 类选择器 */
+        .cl {
+            font-size: 30px;
+        }
+
+        /* id选择器 */
+        #pid {
+            font-size: 40px;
+        }
+
+        /* 通配符选择器 */
+        * {
+            color: red;
+        }
+
+        /* 伪类选择器 */
+        /* link还没访问过的链接 */
+        a:link {
+            color: rgb(87, 13, 224);
+            font-size: 40px;
+        }
+
+        /*visited 访问过的链接 */
+        a:visited {
+            color: gray
+        }
+
+        /* :hover 表示鼠标悬停起作用 */
+        a:hover {
+            color: greenyellow
+        }
+
+        /* :active 表示鼠标点击时作用 */
+        a:active {
+            color: red
+        }
+
+        /* 结构伪类选择器 */
+        /* :first-child 判断自己是不是 父容器中的 第一个孩子 是就起作用 */
+        li:first-child {
+            color: red;
+            font-size: 12px;
+        }
+
+        /*
+            :last-child 
+            判断自己 是不是 父容器中的 最后一个孩子
+            是就起作用
+        */
+        li:last-child {
+            color: pink;
+            font-size: 14px;
+        }
+
+        /*
+            :nth-child(n)
+            判断自己 是不是 父容器中的 第 n 个孩子
+            是就起作用
+        */
+        li:nth-child(3) {
+            color: blue;
+            font-size: 16px;
+        }
+
+        /*
+            :nth-last-child(n)
+            判断自己 是不是 父容器中的 倒数第 n 个孩子
+            是就起作用
+        */
+        li:nth-last-child(2) {
+            color: yellow;
+            font-size: 18px;
+        }
+
+        /*
+            :nth-child(even)  even 偶数
+            如果自己是 父容器中 第偶数个
+            就生效
+        */
+        li:nth-child(even) {
+            color: green;
+        }
+
+        /*
+            :nth-child(odd)  odd 奇数
+            如果自己是 父容器中 第奇数个
+            就生效
+        */
+        li:nth-child(odd) {
+            color: pink;
+        }
+
+        /* 目标伪类选择器 */
+        #big-bam-boom:target {
+            color:blue;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <p>我是标签选择器</p>
+
+    <p class="cl">我是类选择器</p>
+
+    <p id="pid">我是id选择器</p>
+
+    <a href="www.baidu.com">点击我测试伪类选择器</a>
+
+    <ul>
+        <li class="one">第一个孩子</li>
+        <li>第二个孩子</li>
+        <li>第三个孩子</li>
+        <li>第四个孩子</li>
+        <li>第五个孩子</li>
+        <li>第六个孩子</li>
+        <li>第七个孩子</li>
+        <li>第八个孩子</li>
+    </ul>
+
+    <h1 id="big-bam-boom">Kaplow!</h1>
+
+    <a href="#big-bam-boom">点击我</a>
+
+</body>
+
+</html>
