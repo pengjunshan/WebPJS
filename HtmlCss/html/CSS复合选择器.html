@@ -40,6 +40,63 @@
         .box > p {
             color: blue;
         }
+        /* 属性选择器
+         */
+         li[type = "one"]{
+             color: red
+         }
+
+          /*
+            选择器::first-letter
+            选中段落中的第一个字
+        */
+        p.ele::first-letter {
+            color: red;
+            font-size: 50px;
+            font-weight: bolder;
+        }
+        
+        /*
+            选择器::first-line
+            选中段落中的第一行
+        */
+        p.ele::first-line {
+            color: green;
+        }
+        
+        /*
+            选择器::selection
+            控制选中内容的样式
+        */
+        p.ele::selection {
+            background-color: rgb(236, 19, 63);
+            color: blue
+        }
+            /*
+            选择器::before
+            可以给当前元素最前面 加 内容
+            最关键属性 content 不能少
+        */
+
+        p.ele::before {
+            content: "￥";
+            height: 50px;
+            width: 50px;
+            display: inline-block;
+            background-color: blue;
+            background-image: url(08.gif);
+        }
+
+        /*
+         选择器::after
+         可以给当前元素 最后面 添加 内容
+         最关键属性 content 不能少
+         行内元素的效果
+        */
+        p.ele::after {
+            content: "------你个损塞";
+        }
+
     </style>
 </head>
 
@@ -84,6 +141,21 @@
         </div>
     </fieldset>
 
+    <fieldset>
+        <legend>属性选择器</legend>
+     <ol>
+         <li type="one">111111</li>
+         <li type="tow">222222</li>
+         <li type="three">333333</li>
+     </ol>
+    </fieldset>
+
+    
+    <fieldset>
+        <legend>伪元素选择器</legend>
+        <p class="ele">英语词汇，一般指即兴的、随性的随意的发挥，例如HIPHOP说唱中的freestyle就是即兴说唱的意思。2017年6月，因吴亦凡屡次提起而火遍网络。 吴亦凡爆红的freestyle，其实是嘻哈选手的基本功，也是《中国有嘻哈》节目中的一个环节名称。 发展经过编辑 从吴亦凡口里说出来，freestyle就变得很魔性了，因为他见人都会问一句，你有freestyle吗？两个选手难以选择，还是这句，“你们有freestyle吗”？</p>
+   
+    </fieldset>
 
 </body>
 
