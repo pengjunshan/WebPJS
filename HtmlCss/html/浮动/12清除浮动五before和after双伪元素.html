@@ -1,66 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <style>
-			* {
-				margin:0;
-				padding: 0;
-			}
 
-			.father,.uncle {
-				width:1200px;
-				margin:0 auto;
-			}
+<head>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-			.father {
-				border:1px solid;
-			}
+        .father,
+        .uncle {
+            width: 1200px;
+            margin: 0 auto;
+        }
 
-			.father .son {
-				height:200px;
-				background:blue;
-			}
+        .father {
+            border: 1px solid;
+        }
 
-			.father .son1 {
-				width:300px;
-				float:left;
-			}
+        .father .son {
+            height: 200px;
+            background: blue;
+        }
 
-			.father .son2 {
-				width:890px;
-				float:right;
-			}
+        .father .son1 {
+            width: 300px;
+            float: left;
+        }
+
+        .father .son2 {
+            width: 890px;
+            float: right;
+        }
 
 
-			.uncle {
-				height:300px;
-				background:#000;
-			}
+        .uncle {
+            height: 300px;
+            background: #000;
+        }
 
-			.clearfix {
-				clear:both;
-			}
+        .clearfix {
+            clear: both;
+        }
 
-			.clearfix:before,.clearfix:after {
-				content:"";
-				display:block;
-			}
+        .clearfix:before,
+        .clearfix:after {
+            content: "";
+            display: block;
+        }
 
-			.clearfix:after {
-				clear:both;
-			}
+        .clearfix:after {
+            clear: both;
+        }
 
-			.clearfix {
-				*zoom:1;
-			}
-        </style>
-    </head>
-    <body>
-    	<div class="father clearfix">
-    		<div class="son son1"></div>
-    		<div class="son son2"></div>
-    	</div>
-    	<div class="uncle"></div>
-    </body>
+        .clearfix {
+            *zoom: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father clearfix">
+        <div class="son son1"></div>
+        <div class="son son2"></div>
+    </div>
+    <div class="uncle"></div>
+</body>
+
 </html>

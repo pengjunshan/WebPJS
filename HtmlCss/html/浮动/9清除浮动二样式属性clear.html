@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .father,
+        .uncle {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .father {
+            border: 1px solid;
+        }
+
+        .father .son {
+            height: 200px;
+            background: blue;
+        }
+
+        .father .son1 {
+            width: 300px;
+            float: left;
+        }
+
+        .father .son2 {
+            width: 890px;
+            float: right;
+        }
+
+        .uncle {
+            height: 300px;
+            background: #000;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son son1"></div>
+        <div class="son son2"></div>
+        <!-- 
+				内隔墙法，就是在父元素的内部最后一行添加一个块级标签
+				给这个块级标签设定一个样式属性:
+					clear:left|right|both
+    		 -->
+        <div class="clearfix"></div>
+    </div>
+    <!--外隔墙法：
+         在父元素外部设立一道墙（设立一个div）
+         对所设立的墙，添加一个样式属性clear:both-->
+    <div class="clearfix"></div>
+    <div class="uncle"></div>
+</body>
+
+</html>
