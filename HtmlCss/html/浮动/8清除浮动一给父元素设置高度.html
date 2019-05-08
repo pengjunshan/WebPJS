@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .father,
+        .uncle {
+            width: 1200px;
+            margin: 0 auto;
+        }
+        .father {
+            border: 1px solid;
+            height: 200px;
+        }
+        .father .son {
+            height: 200px;
+            background: blue;
+            border: 1px solid red;
+        }
+        .father .son1 {
+            width: 300px;
+            float: left;
+        }
+        .father .son2 {
+            width: 890px;
+            float: right;
+        }
+        .uncle {
+            height: 300px;
+            background: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son son1"></div>
+        <div class="son son2"></div>
+    </div>
+    <div class="uncle"></div>
+</body>
+
+</html>

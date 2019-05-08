@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS三大特性</title>
+    <style>
+        .cascading {
+            color: blue;
+        }
+
+        .cascading {
+            color: red;
+        }
+
+        .inherit{
+            color: blue;
+            text-align: center;
+            font-size: 18px;
+            line-height: 30px;
+        }
+
+	
+		/* important: (1,0,0,0)*/
+        div {
+			/* color: green!important; */
+		}
+		
+		/* id 选择器: (0,1,0,0)*/
+		#priorityid {
+			color: yellow;
+		}
+	
+		/* 类选择器：（0,0,1,0）*/
+		.priority {
+			color: pink;
+		}
+		
+		/* 标签选择器：（0,0,0,1）*/
+		div {
+			/* color: blue; */
+		}
+
+
+    </style>
+</head>
+
+<body>
+    <!-- 层叠性  样式冲突，就近原则-->
+    <div class="cascading">我是层叠性div</div>
+
+    <!-- 继承性 text-，font-，line-开头，以及color，可继承 -->
+    <div class="inherit">
+        <p>邓紫棋</p>
+    </div>
+
+    <!--优先级 !important > 行内样式 > id选择器 > 类选择器 > 标签选择器 > 通配符选择器 > 继承 -->
+    <div class="priority" id="priorityid"> 大吉大利 今晚吃鸡 </div>
+
+
+</body>
+
+</html>
