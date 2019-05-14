@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        /* 子绝父相 */
+        div{
+            width: 300px;
+            height: 300px;
+            background: gray;
+            position: relative;
+        }
+        .one{
+            position:absolute;
+            width: 100px;
+            height: 100px;
+            background: red;
+            top: 50px;
+            left: 50px;
+            z-index: 10;
+        }
+        .tow{
+            position:absolute;
+            width: 100px;
+            height: 100px;
+            background: blue;
+            top: 70px;
+            left: 70px;
+            z-index: 8;
+        }
+        .three{
+            position:absolute;
+            width: 100px;
+            height: 100px;
+            background: gold;
+            top: 90px;
+            left: 90px;
+            z-index: 9;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span class="one"></span>
+        <span class="tow"></span>
+        <span class="three"></span>
+    </div>
+</body>
+</html>

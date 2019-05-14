@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style> 
+        	* {
+				margin: 0;
+				padding: 0;
+        	}
+			div {
+				width:300px;
+				height:300px;
+				background:gold;
+			}
+
+			.two {
+				width:300px;
+				height:300px;
+				/* 
+					相对定位：
+						特点：
+							→可以使用边偏移
+							→没有脱离标准文档流
+							→位置调控时（使用边偏移），参考的自身起初原有的位置。 （自恋型）
+							→ 不会改变元素的显示模式
+				 */
+				position:relative;
+				top:50px;
+				left:50px;
+				background:blue;
+			}
+        </style>
+    </head>
+    <body>
+    	<div class="one">1</div>
+    	<!-- <span class="two">2</span> -->
+    	<div class="two">2</div>
+    	<div class="three">3</div>
+    </body>
+</html>
