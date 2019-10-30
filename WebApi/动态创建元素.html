@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>我是印第安人</div>
+    <div id="dd"></div>
+    <script>
+        /**
+          *document.write()
+          */
+        document.write('我是document.write()创建的标签：<span>标签也可以生成</span>');
+
+        /**
+        *   innerHTML
+        */
+        var dd = document.getElementById("dd");
+        dd.innerHTML = "我是innerHTML()创建的标签：<span>标签也可以生成</span>";
+
+        /**
+        * document.createElement()
+        */
+        var dd2 = document.createElement("div");
+        dd2.innerText = "我是document.createElement()创建的元素"
+        document.body.appendChild(dd2)
+
+    </script>
+</body>
+
+</html>

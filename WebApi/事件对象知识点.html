@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #dd{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            margin: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">我是按钮</button>
+    <div id="dd"></div>
+    <script>
+        /**
+        * event 事件对象
+        */
+        var btn = document.getElementById("btn");
+        btn.onclick = function (event) {
+            //IE678通过window.event获取事件对象
+            var event = event || window.event;
+            console.log(event)
+        }
+
+        /**
+        * 记录了鼠标位置信息的相关属性
+        */
+        //screenX与screenY：光标相对于屏幕左上角的水平位置与垂直位置。
+        // clientX与clientY：光标相对于可视区左上角的水平位置和垂直位置。
+        // pageX与pageY：光标相对于网页（文档document）左上角的水平位置与垂直位置（推荐使用）       
+        document.getElementById("dd").onclick = function(event){
+            console.log("screenX="+event.screenX +"---screenY="+event.screenY)
+            console.log("clientX="+event.clientX+"---clientY="+event.clientY)
+            console.log("pageX="+event.pageX+"---pageY="+event.pageY)
+        } 
+
+    </script>
+</body>
+
+</html>

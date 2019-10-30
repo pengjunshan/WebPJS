@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    body {
+        padding-left: 100px;
+    }
+
+    #imgs {
+        overflow: hidden;
+        margin: 50px 0;
+    }
+
+    #imgs li {
+        float: left;
+        margin-right: 10px;
+    }
+</style>
+
+<body>
+    <h1 name="pjs"></h1>
+
+    <ul id="imgs">
+        <li>
+            <a href="../img/1.jpg" title="美女A">
+                <img src="../img/1-small.jpg" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="../img/2.jpg" title="美女B">
+                <img src="../img/2-small.jpg" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="../img/3.jpg" title="美女C">
+                <img src="../img/3-small.jpg" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="../img/4.jpg" title="美女D">
+                <img src="../img/4-small.jpg" alt="">
+            </a>
+        </li>
+    </ul>
+
+    <img src="../img/placeholder.png" width="400" height="250" alt="" id="bigImg">
+
+
+    <!--标签的内容-->
+    <p class="des">这是描述信息</p>
+    <p class="des">这是描述信息</p>
+    <p class="des">这是描述信息</p>
+
+    <script>
+        //1. 点击a标签时，能够呵呵就行。
+        //2. 修改大图片的src  p标签的innerText
+
+        //1. 找对象
+        var imgs = document.getElementById("imgs");//ul
+        var links = imgs.getElementsByTagName("a");//所有的a标签
+        var bigImg = document.querySelector("#bigImg");//大图片
+        var des = document.querySelectorAll(".des");
+        var pjs = document.getElementsByName("pjs");
+
+        pjs[0].innerText = "美女相册";
+
+        //2. 给所有的a标签注册点击事件
+        for (var i = 0; i < links.length; i++) {
+            links[i].onclick = function () {
+
+                //3. 修改大图片的src属性， this.href
+                bigImg.src = this.href;
+
+                //4. 修改p标签的内容, innerText:内部的文本
+                des[0].innerText = this.title;
+
+                //5. 阻止a跳转
+                return false;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

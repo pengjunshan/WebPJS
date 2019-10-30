@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" value="钢琴" id="txt">
+
+    <input type="button" value="禁用" id="btn">
+    <input type="text" id="txt1">
+
+    <input type="checkbox" name="" id="">
+    <input type="button" value="按钮" id="btn1">
+
+    <input type="button" value="翻牌子" id="btn2">
+    <select>
+        <option>方方</option>
+        <option>韩韩</option>
+        <option>莲莲</option>
+        <option>辉辉</option>
+        <option>明明</option>
+        <option>陈陈</option>
+        <option>乐乐</option>
+        <option>华华</option>
+    </select>
+
+    <script>
+
+        var txt = document.getElementById("txt");
+
+        // 获取焦点 判断txt的value值，如果是钢琴，清空原先的内容， 如果不是钢琴，啥也不干
+        txt.onfocus = function () {
+            if (this.value === "钢琴") {
+                this.value = "";
+            }
+        }
+        //失去焦点 判断txt的value值，如果是空，恢复默认值，否则，啥也不干
+        txt.onblur = function () {
+            if (this.value === "") {
+                this.value = "钢琴";
+            }
+        }
+
+        //通过js如何禁用？
+        //disabled、checked、selected 布尔类型的属性
+        //特点：标签中，只要写了，就生效，不管值
+        //     对象中，除了true就是false  true：生效  false：不生效
+        var btn = document.getElementById("btn");
+        var txt1 = document.getElementById("txt1");
+        btn.onclick = function () {
+            if (txt1.disabled) {
+                txt1.disabled = false;
+            } else {
+                txt1.disabled = true;
+            }
+        }
+
+        //获取页面中所有的input
+        var inputs = document.getElementsByTagName("input");
+        var btn = document.getElementById("btn1");
+
+        //因为只是给一个按钮注册事件，所以不需要for循环
+        //操作的是一个对象还是多个对象
+        btn.onclick = function () {
+            //禁用所有的input框，除了按钮
+            for (var i = 0; i < inputs.length; i++) {
+                //判断type是不是text，如果是，才禁用
+                if (inputs[i].type === "text") {
+                    inputs[i].disabled = true;
+                } else if (inputs[i].type === "checkbox") {
+                    inputs[i].checked = true;
+                }
+            }
+        }
+
+        //点击按钮，随机翻一个人牌子
+        var btn = document.getElementById("btn2");
+        var options = document.getElementsByTagName("option");
+
+        btn.onclick = function () {
+            //写一个随机数
+            //[0,1)
+            //随机数需要写在事件里头，每次点击都要重新生成随机数
+            var random = parseInt(Math.random() * options.length);
+            options[random].selected = true;
+        }
+
+
+    </script>
+</body>
+
+</html>

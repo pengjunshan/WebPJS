@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            margin: 50px auto;
+        }
+
+        td {
+            padding: 15px;
+            text-align: center;
+
+            /*border: 1px solid #000;*/
+        }
+
+        input {
+            width: 100px;
+            height: 40px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="开始" id="btn1">
+    <input type="button" value="结束" id="btn2">
+    <script>
+        var list = [
+            ["@", "@", "@", "老师", "@", "@", "杜嘉晖", "廖国藩", "王浩", "孙广明", "@"],
+            ["@", "张萍", "叶继平", "沈阳", "许诚", "@", "罗杰", "武富云", "汪昊", "曹菁", "罗莉"],
+            ["@", "黄泽民", "吴永霞", "刘娟", "李琛", "@", "贾海华", "葛玥", "袁小雨", "袁敏", "李佩芸", "窦松婷"],
+            ["刘玉军", "尹钦", "冯梓硕", "阙文琦", "唐海华", "@", "许海燕", "张曼玉", "王正来", "顾军", "陈辉", "杨阳"],
+            ["王梦茹", "胡佳丽", "何育娟", "郞文静", "刘莹", "@", "王继杰", "王寿南", "何家亮", "杨博文", "路雨", "梅瑶瑶"],
+            ["张杰", "李明珠", "王淑华", "谭喜兵", "周云卓", "@", "张陆凯", "宋余乐", "王琨", "胡崇文", "谢凌辉", "王康"],
+            ["@", "黄张龙", "王世波", "孙苏霞", "陈振", "@", "刘钦罡", "黄维", "吴伟强", "张童", "李斌"],
+        ];
+
+        //1. 创建table，添加到body
+
+
+        var mTable = document.createElement("table");
+        document.body.appendChild(mTable);
+
+        //创建一个tds变量来存所有的td对象 来做随机点名的集合
+        let tds = [];
+
+        //2. 根据list的长度，创建tr，添加到table
+        for (let i = 0; i < list.length; i++) {
+
+            //根据list的长度来创建响应的tr 并添加到table中
+            var mTr = document.createElement("tr");
+            mTable.appendChild(mTr);
+
+            //3. 根据list[i]的长度，创建td，添加到tr中
+            let sonList = list[i];
+            for (let i = 0; i < sonList.length; i++) {
+                //根据sonList子集合来创建td 并添加到mTr中
+                let mTd = document.createElement("td");
+                mTr.appendChild(mTd);
+
+                //如果有人名就设置背景色填充名字
+                if (sonList[i] !== "@") {
+                    mTd.innerText = sonList[i];
+                    mTd.style.backgroundColor = "yellowgreen";
+
+                    //如果是老师 就不添加到tds集合中
+                    if (sonList[i] === "老师") {
+                        continue;
+                    }
+                     //添加到tds集合中
+                tds.push(mTd)
+                }
+            }
+        }
+
+        let tiemInterval;
+        //开始点名
+        document.getElementById("btn1").onclick = function () {
+
+            //先清理定时器
+            clearInterval(tiemInterval);
+            tiemInterval = setInterval(function(){
+
+                //先把所有的td背景色都还原
+                for(let i=0; i<tds.length; i++){
+                    tds[i].style.backgroundColor = "yellowgreen"
+                }
+
+                //随机一个td设置高亮
+                let position = parseInt(Math.random() * tds.length);
+                tds[position].style.backgroundColor = "hotpink";
+
+            },100);
+
+        }
+
+        //结束点名 清楚定时器
+        document.getElementById("btn2").onclick = function () {
+            clearInterval(tiemInterval);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid #000;
+            /*边框合并*/
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #000;
+            height: 40px;
+            background-color: #ccc;
+        }
+
+        td {
+            border: 1px solid #000;
+            height: 30px;
+            text-align: center;
+            padding: 0 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="addBtn">增加</button>
+    <script>
+
+        //js对象  json  ajax
+        var data = {
+            "header": ["姓名", "性别", "年龄", "描述"],
+            "content": [
+                { "name": "王琨", "gender": "女", "age": 30, "desc": "曾经是个王者" },
+                { "name": "王梦茹", "gender": "女", "age": 18, "desc": "小仙女" },
+                { "name": "罗杰", "gender": "男", "age": 23, "desc": "海贼王船长" },
+                { "name": "袁小雨", "gender": "男", "age": 38, "desc": "打酱油的" },
+                { "name": "黄张龙", "gender": "女", "age": 28, "desc": "社会我龙哥，人狠话不多" },
+                { "name": "王浩", "gender": "男", "age": 23, "desc": "死基佬，死基佬" },
+                { "name": "孙广明", "gender": "男", "age": 3, "desc": "学霸，大神" },
+            ]
+        }
+
+        //1. 创建一个table，添加到body
+        var mTable = document.createElement("table");
+        document.body.appendChild(mTable);
+        //2. 创建一个thead，添加到table
+        var mThead = document.createElement("thead");
+        mTable.appendChild(mThead);
+        //2.1 创建一个tr，添加到thead
+        var theadTr = document.createElement("tr");
+        mThead.appendChild(theadTr);
+        //2.2 创建多个th, 添加到tr中， 设置内容
+        var headerList = data.header;
+        for (let i = 0; i < headerList.length; i++) {
+            var mTh = document.createElement("th");
+            mTh.innerText = headerList[i];
+            theadTr.appendChild(mTh);
+        }
+        //3. 创建tbody，添加到table
+        var mTbody = document.createElement("tbody");
+        mTable.appendChild(mTbody);
+        //3.1 创建多个tr，添加tbody
+        //3.2 创建多个td，添加到tr中， 设置内容
+        //4.添加删除功能
+        var contentList = data.content;
+        for (let i = 0; i < contentList.length; i++) {
+            var tr = document.createElement("tr");
+            mTbody.appendChild(tr);
+            var obj = contentList[i];
+            for (const key in obj) {
+                var td = document.createElement("td")
+                tr.appendChild(td)
+                td.innerText = obj[key]
+            }
+            var delTd = document.createElement("td");
+            tr.appendChild(delTd);
+            var btn = document.createElement("button");
+            btn.innerText = "删除";
+            delTd.appendChild(btn);
+            btn.onclick = function () {
+                mTbody.removeChild(this.parentNode.parentNode);
+            }
+        }
+        var delTh = document.createElement("th");
+        delTh.innerText = "删除"
+        theadTr.appendChild(delTh)
+
+        //5.新增表格
+        var addBtn = document.getElementsByClassName("addBtn")
+        console.log(addBtn)
+        addBtn[0].onclick = function () {
+            console.log("11111111")
+            var addTr = document.createElement("tr");
+            mTbody.appendChild(addTr);
+            var nameTd = document.createElement("td");
+            nameTd.innerText = "张三";
+            addTr.appendChild(nameTd)
+            var sexTd = document.createElement("td");
+            sexTd.innerText = "男";
+            addTr.appendChild(sexTd);
+            var ageTd = document.createElement("td");
+            ageTd.innerText = "18";
+            addTr.appendChild(ageTd)
+            var msTd = document.createElement("td");
+            msTd.innerText = "我是描述";
+            addTr.appendChild(msTd)
+            var delTd = document.createElement("td");
+            addTr.appendChild(delTd);
+            var btn = document.createElement("button");
+            btn.innerText = "删除";
+            delTd.appendChild(btn);
+            btn.onclick = function () {
+                mTbody.removeChild(this.parentNode.parentNode);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

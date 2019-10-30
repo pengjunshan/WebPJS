@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="pp">
+        <div>敏文兄</div>
+        <div>平平</div>
+        <div id="dyy">短圆圆</div>
+        <p>邱航</p>
+        <p>胖子</p>
+    </div>
+
+    <script>
+        var pp = document.querySelector("#pp");
+        var dyy = document.getElementById("dyy");
+
+        //克隆节点cloneNode(*) *: 为布尔值，如果为true，那么将克隆原节点，以及所有子节点；为false时，仅复制节点本身
+        var cldyy = dyy.cloneNode(true);
+
+        //添加节点appendChild()添加到尾端  
+        // pp.appendChild(cldyy);
+
+        //插入节点insertBefore(newChild，*)第一个参数：newChild 需要添加的元素,
+        //第二个参数：refChild 添加到哪个子元素前面 传null默认最后末端.
+        pp.insertBefore(cldyy, pp.children[0])
+        console.log(pp)
+
+        //移除节点removeChild(*) *:要移除的节点 
+        pp.removeChild(pp.children[1]);
+        console.log(pp)
+
+    </script>
+</body>
+
+</html>

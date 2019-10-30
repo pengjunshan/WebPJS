@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="pp">
+        <div>敏文兄</div>
+        <div>平平</div>
+        <div id="dyy">短圆圆</div>
+        <p>邱航</p>
+        <p>胖子</p>
+    </div>
+
+    <script>
+        var pp = document.querySelector("#pp");
+        var dyy = document.getElementById("dyy");
+
+        //childNodes:可以获取到某个元素所有的子节点
+        var childs = pp.childNodes;
+        console.log(childs)
+
+        //我们需要的是标签节点，元素 判断一个节点是不是标签： nodeType === 1
+        for (var i = 0; i < childs.length; i++) {
+            if (childs[i].nodeType === 1) {
+                console.log(childs[i]);
+            }
+        }
+
+        //children : 获取某个元素中所有的子元素（children）
+        var childrens = pp.children;
+        console.log(childrens)
+
+        //第一个孩子节点
+        console.log(pp.firstChild)
+        //  console.log(childs[0])
+        //第一个孩子元素
+        console.log(pp.firstElementChild)
+        //  console.log(childrens[0])
+
+        //最后一个孩子节点
+        console.log(pp.lastChild)
+        // console.log(childs[childs.length-1])
+        //最后一个孩子元素
+        console.log(pp.lastElementChild)
+        // console.log(childrens[childrens.length-1])
+
+        //兄弟姐妹：sibling
+        //上一个兄弟节点
+        console.log(dyy.previousSibling)
+        //上一个兄弟元素
+        console.log(dyy.previousElementSibling);
+
+        //下一个兄弟节点
+        console.log(dyy.nextSibling);
+        //下一个兄弟元素
+        console.log(dyy.nextElementSibling);
+
+        //父节点
+        console.log(dyy.parentNode)
+        //父元素
+        console.log(dyy.parentElement)
+
+    </script>
+</body>
+
+</html>

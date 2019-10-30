@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav {
+      height: 30px;
+      background: #036663;
+      border-bottom: 1px solid #369;
+      line-height: 30px;
+      padding-left: 30px;
+    }
+
+    .nav a {
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      text-decoration: none;
+
+    }
+
+    .d-box {
+      width: 400px;
+      height: 300px;
+      border: 5px solid #eee;
+      box-shadow: 2px 2px 2px 2px #666;
+      position: absolute;
+      top: 40%;
+      left: 40%;
+    }
+
+    .hd {
+      width: 100%;
+      height: 25px;
+      background-color: #7c9299;
+      border-bottom: 1px solid #369;
+      line-height: 25px;
+      color: white;
+      cursor: move;
+    }
+
+    #box_close {
+      float: right;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="d-box" id="d_box">
+    <div class="hd" id="drop">注册信息 (可以拖拽)
+      <span id="box_close">【关闭】</span>
+    </div>
+    <div class="bd"></div>
+  </div>
+
+  <script>
+    var d_box = document.getElementById("d_box");
+    var drop = document.getElementById("drop");
+
+    /**
+    * 给头部注册点击事件 获取鼠标点距离
+    */
+    drop.onmousedown = function (e) {
+      var leftX = e.pageX - d_box.offsetLeft;
+      var topY = e.pageY - d_box.offsetTop;
+
+      /**
+      * 给document注册移动事件 动态改变弹窗的位置
+      */
+      document.onmousemove = function (e) {
+        d_box.style.left = e.pageX - leftX + "px";
+        d_box.style.top = e.pageY - topY + "px";
+      }
+    }
+
+    /**
+    * 鼠标离开是取消掉document注册移动事件
+    */
+    drop.onmouseup = function () {
+      document.onmousemove = null;
+    }
+
+  </script>
+</body>
+
+</html>

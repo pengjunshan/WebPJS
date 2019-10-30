@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #sd{
+        width: 200px;
+        height: 200px;
+        background-color: red;
+    }
+    .show{
+        display: block;
+    }
+    .none{
+        display: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="pp" index="1" aa="a"></div>
+    <div id="box"></div>
+    <input type="button" value="切换类名">
+    <div id="sd" class="show"></div>
+
+    <script>
+        /**
+        *  自定义属性，setAttribute（）可以修改属性值也可以添加属性
+        */
+        var pp = document.getElementById("pp");
+        console.log(pp.getAttribute("index"))
+        pp.setAttribute("index", "2");
+        console.log(pp.getAttribute("index"))
+        pp.setAttribute("name", "pjs")
+        pp.removeAttribute("aa")
+        console.log(pp)
+
+        /**
+        *   样式操作
+        */
+        var box = document.getElementById("box");
+        box.style.borderRadius = "50%";
+        box.style.backgroundColor = "pink";
+        box.style.width = "200px";
+        box.style.height = "100px"
+        console.log(box.style.backgroundColor)
+
+        /**
+        * 类名操作 切换类名
+        */
+        var sdDiv = document.getElementById("sd");
+        var inputs = document.getElementsByTagName("input");
+        for(var i = 0; i<inputs.length; i++){
+            if(inputs[i].type == "button"){
+                inputs[i].onclick = function(){
+                    if(sdDiv.className === "show"){
+                        sdDiv.className = "none";
+                    }else{
+                        sdDiv.className = "show";
+                    }
+                }
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
