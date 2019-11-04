@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择器</title>
+    <script src="jquery-1.12.4.js"></script>
+</head>
+
+<body>
+    <ul>
+        <li class="xyy">喜羊羊</li>
+        <li>懒羊羊</li>
+        <li>沸羊羊</li>
+        <li id="myy">慢羊羊</li>
+        <li>灰太狼</li>
+        <li>红太狼</li>
+    </ul>
+
+    <div class="xyy">灰太狼</div>
+
+    <div class="father">爸爸
+        <div class="son">儿子
+            <div class="grandson">孙子</div>
+        </div>
+        <p>ppp</p>
+        <span></span>
+    </div>
+
+    <script>
+        $(function(){
+            /**
+            *  基本选择器
+            */
+            //ID选择器
+            let $myy = $("#myy");
+            console.log($myy)
+
+            //类选择器
+            let $xyy = $(".xyy");
+            console.log($xyy)
+
+            //标签选择器
+            let $li = $("li");
+            console.log($li)
+
+            //并集选择器
+            let $bj = $(".xyy,#myy");
+            console.log($bj)
+
+            //交集选择器
+            let $jj = $("div.xyy");
+            console.log($jj)
+
+            /**
+            *   层级选择器
+            */
+            //子代选择器
+            let $zd = $(".father>div")
+            console.log($zd)
+
+            //后代选择器
+            var $hd = $(".father div")
+            console.log($hd)
+
+            /**
+            *   过滤选择器
+            */
+            //:eq（index）
+            let $eq = $("li:eq(2)")
+            console.log($eq)
+
+            //:odd
+            let $odd = $("li:odd")
+            console.log($odd)
+            
+
+            //:even
+            let $even = $("li:even")
+            console.log($even)
+            $even.css("color","red")
+
+            /**
+            *   筛选选择器(方法)
+            */
+            //children(selector) 相当于子代选择器
+            let $children = $(".father").children("div")
+            console.log($children)
+
+            //find(selector) 相当于后代选择器
+            let $find = $(".father").find("div")
+            console.log($find)
+
+            //siblings(selector) 无参所有兄弟节点 有参指定节点
+            // let $siblings = $(".son").siblings()
+            let $siblings = $(".son").siblings("p")
+            console.log($siblings)
+
+            //parent()
+            let $parent = $(".son").parent()
+            console.log($parent)
+
+            //eq(index)
+            let $eq2 = $("li").eq(2)
+            console.log($eq2)
+
+            //next()
+            // let $next = $("#myy").nextAll()
+            let $next = $("#myy").next()
+            console.log($next)
+
+            //prev()
+            let $prev = $("#myy").prev()
+            console.log($prev)
+
+        })
+    </script>
+</body>
+
+</html>

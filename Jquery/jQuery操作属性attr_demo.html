@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+    <style type="text/css">
+        body {
+            font-family: "Helvetica", "Arial", serif;
+            color: #333;
+            background-color: #ccc;
+            margin: 1em 10%;
+        }
+        h1 {
+            color: #333;
+            background-color: transparent;
+        }
+        a {
+            color: #c60;
+            background-color: transparent;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        ul {
+            padding: 0;
+        }
+        li {
+            float: left;
+            padding: 1em;
+            list-style: none;
+        }
+        #imagegallery {
+            list-style: none;
+        }
+        #imagegallery li {
+            margin: 0px 20px 20px 0px;
+            padding: 0px;
+            display: inline;
+        }
+        #imagegallery li a img {
+            border: 0;
+        }
+        #des {
+            font-size: 28sp;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>
+        美女画廊
+    </h2>
+
+    <ul id="imagegallery">
+        <li><a href="../img/1.jpg" title="美女A">
+                <img src="../img/1-small.jpg" width="100" alt="美女1" />
+            </a></li>
+        <li><a href="../img/2.jpg" title="美女B">
+                <img src="../img/2-small.jpg" width="100" alt="美女2" />
+            </a></li>
+        <li><a href="../img/3.jpg" title="美女C">
+                <img src="../img/3-small.jpg" width="100" alt="美女3" />
+            </a></li>
+        <li><a href="../img/4.jpg" title="美女D">
+                <img src="../img/4-small.jpg" width="100" alt="美女4" />
+            </a></li>
+    </ul>
+    <div style="clear:both"></div>
+    <img id="image" src="../img/placeholder.png" alt="" width="450px" />
+    <p id="des">选择一个图片</p>
+
+    <script>
+        //获取所有的相册a标签
+        let $aList = $("#imagegallery>li>a");
+        let $image = $("#image")
+        let $des = $("#des")
+
+        //给所有的a标签注册点击事件
+        $aList.click(function () {
+            //获取当前点击的a标签属性
+            let $href = $(this).attr("href")
+            let $title = $(this).attr("title")
+
+            //给大图赋值点击的图片 赋值title名字
+            $image.attr("src", $href)
+            $des.text($title)
+
+            //阻止跳转
+            return false;
+        })
+    </script>
+</body>
+
+</html>

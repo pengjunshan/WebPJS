@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .wrap {
+            width: 330px;
+            height: 30px;
+            margin-top: 50px;
+            margin-left: 50px;
+            background-image: url(../img/bg.jpg);
+        }
+
+        .wrap li {
+            background-image: url(../img/libg.jpg);
+        }
+
+        .wrap>ul>li {
+            float: left;
+            margin-right: 10px;
+            position: relative;
+        }
+
+        .wrap a {
+            display: block;
+            height: 30px;
+            width: 100px;
+            text-decoration: none;
+            color: #000;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .wrap li ul {
+            position: absolute;
+            top: 30px;
+            display: none;
+        }
+
+        .nav {
+            width: 800px;
+            height: 60px;
+            background-color: black;
+            margin-left: 400px;
+        }
+
+        .nav li {
+            width: 100px;
+            height: 60px;
+            /*border: 1px solid yellow;*/
+            float: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav a {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            font-size: 24px;
+            color: blue;
+            text-align: center;
+            line-height: 60px;
+            text-decoration: none;
+            z-index: 2;
+        }
+
+        .nav span {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: yellow;
+            top: 60px;
+        }
+       .hd ul {
+            list-style: none;
+        }
+
+        .hd {
+            width: 1200px;
+            height: 320px;
+            border: 2px solid red;
+            margin: 100px auto;
+        }
+
+        .hd li {
+            width: 240px;
+            height: 320px;
+            /*border: 1px solid #000;*/
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 案例一：下拉菜单案例  -->
+    <div class="wrap">
+        <ul>
+            <li>
+                <a href="javascript:void(0);">一级菜单1</a>
+                <ul class="ul">
+                    <li><a href="javascript:void(0);">二级菜单11</a></li>
+                    <li><a href="javascript:void(0);">二级菜单12</a></li>
+                    <li><a href="javascript:void(0);">二级菜单13</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);">一级菜单2</a>
+                <ul>
+                    <li><a href="javascript:void(0);">二级菜单21</a></li>
+                    <li><a href="javascript:void(0);">二级菜单22</a></li>
+                    <li><a href="javascript:void(0);">二级菜单23</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);">一级菜单3</a>
+                <ul>
+                    <li><a href="javascript:void(0);">二级菜单31</a></li>
+                    <li><a href="javascript:void(0);">二级菜单32</a></li>
+                    <li><a href="javascript:void(0);">二级菜单33</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 案例二：钢琴版导航条 -->
+    <div class="nav">
+        <ul>
+            <li><a href="javascript:void(0);">导航1</a><span></span></li>
+            <li><a href="javascript:void(0);">导航2</a><span></span></li>
+            <li><a href="javascript:void(0);">导航3</a><span></span></li>
+            <li><a href="javascript:void(0);">导航4</a><span></span></li>
+            <li><a href="javascript:void(0);">导航5</a><span></span></li>
+            <li><a href="javascript:void(0);">导航6</a><span></span></li>
+            <li><a href="javascript:void(0);">导航7</a><span></span></li>
+            <li><a href="javascript:void(0);">导航8</a><span></span></li>
+        </ul>
+
+        <div>
+            <audio src="../img/a1.mp3"></audio>
+            <audio src="mp3/a2.mp3"></audio>
+            <audio src="mp3/a3.mp3"></audio>
+            <audio src="mp3/a4.mp3"></audio>
+            <audio src="mp3/a5.mp3"></audio>
+            <audio src="mp3/a6.mp3"></audio>
+            <audio src="mp3/a7.mp3"></audio>
+            <audio src="mp3/a8.mp3"></audio>
+        </div>
+    </div>
+
+    <!-- 案例三：手风琴案例 -->
+    <div class="hd">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <script>
+        $(function () {
+
+            // 案例一：下拉菜单案例
+            //1.获取wrap>ul>li
+            let $lis = $(".wrap>ul>li");
+
+            //2.给li集合注册mouseenter事件显示
+            $lis.mouseenter(function () {
+                $(this).find("ul").stop().slideDown();
+            })
+
+            //2.给li集合注册mouseleave事件隐藏
+            $lis.mouseleave(function () {
+                $(this).children("ul").stop().slideUp();
+            })
+        })
+
+        //案例二：钢琴版导航条 
+        //1.先获取nav>ul>li集合和audio集合
+        let $navList = $(".nav>ul>li");
+        let $audios = $("audio");
+
+        //2.给$navList注册mouseenter事件
+        $navList.mouseenter(function () {
+            $(this).children("span").stop().animate({ top: 0 }, 500);
+            let index = $(this).index();
+            //play是DOM的方法 所以需要进行对象转换
+            $audios[index].load();
+            $audios.get(index).play();
+        }).mouseleave(function () {
+            $(this).children("span").stop().animate({ top: 60 }, 500);
+        })
+
+        //案例三：手风琴
+        //1.先获取所有的li 和 外部的div
+        let $hdLi = $(".hd>ul>li")
+        let $hd = $(".hd")
+        //2.给每个li设置css样式backgroundImage
+        for(let i = 1; i<=$hdLi.length;i++){
+            $hdLi.eq(i-1).css('backgroundImage','url(images/'+ i +'.jpg)')
+            $hdLi.eq(i-1).css('backgroundImage','url(images/'+ i +'.jpg)');
+        }
+        //3.给$hdLi添加mouseenter事件
+        $hdLi.mouseenter(function(){
+            //让当前元素的宽度变成800（动画）同时让兄弟元素的宽度变成100 
+            $(this).stop().animate({width:800},300).siblings().stop().animate({width:100},300)
+        })
+        //4.给$hd注册离开事件 一旦离开的区域 让所有的li元素都回到240 的宽度
+        $hd.mouseleave(function(){
+            $hdLi.stop().animate({width:240},300)
+        })
+
+    </script>
+
+</body>
+
+</html>

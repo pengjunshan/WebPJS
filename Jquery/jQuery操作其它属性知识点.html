@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+    <style>
+        body {
+            height: 10000px;
+            width: 10000px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" class="in">
+    <div class="box"></div>
+
+</body>
+<script>
+
+    $(function () {
+        //1.val()方法
+        /**
+        *   val();方法用于设置和获取表单元素的值，例如input、select、textarea的值
+        */
+        $(".in").val("吃烩面")
+        console.log($(".in").val())
+
+        //2.html()方法
+        /**
+        *   html(htmlStr)方法可以识别标签; htmlStr：标签字符串
+        */
+        $(".box").html("<p>我是Html</p>")
+
+        //3.text()方法
+        /**
+        *   text(htmlStr)方法不可以识别标签; htmlStr：字符串
+        */
+        $(".box").text("<p>我是Html</p>")
+
+        //4.height()、width()
+        /**
+        *   height(number)设置或者获取高度; number:可传可不传
+        *   width(number)设置获取获取宽度; number:可传可不传
+        *   返回值是number类型（比如200），对比$(“img”).css(“width”)返回的是字符串（比如200px）
+        */
+        $(".box").height(200)
+        console.log($(".box").height())
+        $(".box").width(200)
+        console.log($(".box").width())
+
+        //5.scrollTop()
+        /**
+        *   scrollTop(number)；传参设置垂直滚动条的位置，不传承获取垂直滚动条的位置
+        *   参数为数值类型
+        */
+
+        // $(window).animate({scrollTop: 700},100); //100ms for example
+        setTimeout(function () {
+            $(window).scrollTop(700);
+            console.log($(window).scrollTop())
+        }, 100); //100ms for example
+
+        //6.scrollLeft()
+        /**
+        *   scrollLeft(number);传参设置水平滚动条的位置，不传参获取水平滚动条的位置
+        */
+        $(window).scrollLeft(300)
+        console.log($(window).scrollLeft())
+    })
+
+</script>
+
+</html>

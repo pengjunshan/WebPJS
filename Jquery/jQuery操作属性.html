@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div></div>
+
+    <input type="checkbox">
+
+    <script>
+        let $box = $("div")
+        /**
+        *   attr操作
+        */
+        //设置单个属性
+        /**
+        *    attr(name, value); name:需要设置的属性名,value:对应的属性值
+        */
+        $box.attr("name", "名字");
+
+        //设置多个属性
+        /**
+        *    attr(obj); 参数是一个对象，包含了需要设置的属性名和属性值
+        */
+        $box.attr({
+            "title": "头",
+            "aa": "111"
+        })
+
+        //获取属性
+        /**
+        *    attr(name); name传需要获取的属性名称，返回对应的属性值
+        */
+        console.log($box.attr("name"))
+
+        //移除属性
+        /**
+        *    removeAttr(name); name需要移除的属性名，如果传空，那么不会有任何操作
+        *    注意，并不是移除所有的属性。区分removeClass。
+        */
+        $box.removeAttr("aa")
+
+        /**
+        *    prop操作
+        *    在jQuery1.6之后，对于checked、selected、disabled这类boolean类型的属性来说，
+        *    不能用attr方法，只能用prop方法。
+        */
+        let $input = $("input")
+        //设置属性
+        /**
+        *    prop(name,value); name:boolean类型属性，value:布尔值
+        */
+        $input.prop("checked", true)
+
+        //获取属性
+        /**
+        *    prop(name); name:boolean类型属性
+        */
+        console.log($input.prop("checked"))
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .wrap {
+            width: 300px;
+            margin: 100px auto 0;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #c0c0c0;
+            width: 300px;
+        }
+        th,
+        td {
+            border: 1px solid #d0d0d0;
+            color: #404060;
+            padding: 10px;
+        }
+        th {
+            background-color: #09c;
+            font: bold 16px "微软雅黑";
+            color: #fff;
+        }
+        td {
+            font: 14px "微软雅黑";
+        }
+        tbody tr {
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="j_cbAll" />
+                    </th>
+                    <th>菜名</th>
+                    <th>饭店</th>
+                </tr>
+            </thead>
+            <tbody id="j_tb">
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>红烧肉</td>
+                    <td>田老师</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>西红柿鸡蛋</td>
+                    <td>田老师</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>红烧狮子头</td>
+                    <td>田老师</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>日式肥牛</td>
+                    <td>田老师</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+
+        //获取全选和菜单的input对象
+        let $allCheck = $("#j_cbAll")
+        let $checkList = $("#j_tb input")
+
+        //给全选添加点击事件
+        $allCheck.click(function (e) {
+            //获取全选input的状态
+            let $isCheck = $(this).prop("checked")
+            if ($isCheck) {//true:给所有的input都够勾选上
+                $checkList.prop("checked", true)
+            } else {//fale:给所有的input都不勾选
+                $checkList.prop("checked", false)
+            }
+        })
+
+        //给所有的input注册点击事件
+        $checkList.click(function () {
+            //获取input的总数
+            let $size = $checkList.length;
+            //获取选中input的总数
+            let $checkSize = $("#j_tb input:checked").length
+            //判断input总数是否等于选中的input总数
+            if ($size === $checkSize) {
+                $allCheck.prop("checked", true)
+            } else {
+                $allCheck.prop("checked", false)
+            }
+        })
+    </script>
+</body>
+
+</html>

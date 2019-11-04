@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+    <div id="dd"></div>
+    <div id="pp"></div>
+
+    <script>
+        /**
+        *   DOM对象转jQuery对象
+        */
+        let dd = document.getElementById("dd");
+        console.log(dd)
+        let $dd = $(dd);
+        console.log($dd)
+
+        //innerHTML是DOM对象的属性 jQuery对象用不了
+        dd.innerHTML = '你好呀！！';//赋值成功
+		$dd.innerHTML = '你好呀';//赋值失败
+
+
+        /**
+        *jQuery对象转DOM对象
+        */
+        let $pp = $("#pp");
+        console.log($pp)
+        //第一种方式
+        let pp1 = $pp[0];
+        console.log(pp1)
+        //第二种方式
+        let pp2 = $pp.get(0);
+        console.log(pp2)
+
+        //text()方法是jQuery对象的方法 DOM对象用不了
+        $pp.text("木问题啊");//赋值成功
+        pp2.text("木问题啊。。。。")//赋值失败
+
+
+    </script>
+
+</body>
+</html>

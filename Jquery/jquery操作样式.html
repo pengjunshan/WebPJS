@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+    <style>
+        .box,
+        .dd {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div class="dd"></div>
+    <script>
+        /**
+        *   css操作
+        */
+        //设置单个样式
+        /**
+        *   css(name, value);name：需要设置的样式名称 value：对应的样式值
+        */
+        $(".box").css("background-color", "red");
+
+        //设置多个样式
+        /**
+        * css(obj);
+        * 参数是一个对象，对象中包含了需要设置的样式名和样式值
+        */
+        $(".box").css({
+            "background-color": "gray",
+            "width": "200px",
+            "height": "200px"
+        })
+
+        /**
+        *   获取样式
+        */
+        let width = $(".box").css("width")
+        console.log(width)
+
+
+        /**
+        *   class操作
+        */
+        //添加样式类
+        /**
+        *   addClass(name); name：需要添加的样式类名，注意参数不要带点.
+        */
+        $(".dd").addClass("pp")
+
+        //移除样式类
+        /**
+        *   removeClass(name); name:需要移除的样式类名
+        */
+        $(".dd").removeClass("pp")
+
+        //判断是否有样式类
+        /**
+        * hasClass(name); name:用于判断的样式类名，返回值为true false
+        */
+        console.log($(".dd").hasClass("pp"))
+
+        //切换样式类
+        /**
+        *   toggleClass(name); name:需要切换的样式类名，如果有，移除该样式，如果没有，添加该样式。
+        */
+        $(".dd").toggleClass("pp")
+
+    </script>
+</body>
+
+</html>

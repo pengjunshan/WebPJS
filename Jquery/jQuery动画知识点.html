@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+
+        .box4{
+            position: absolute;
+            left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <input class="input1" type="button" value="隐藏">
+    <div class="box box1"></div>
+
+    <input class="input2" type="button" value="隐藏">
+    <div class="box box2"></div>
+
+    <input class="input3" type="button" value="隐藏">
+    <div class="box box3"></div>
+
+    <input class="input4" type="button" value="执行动画">
+    <div class="box box4"></div>
+
+    <script>
+        //1.显示(show) 与隐藏(hide)
+        /**
+        *   show(speed,callback); speed:动画时长单位毫秒(可传可不传)，callback：动画执行完后回调(可传可不传)
+        *   show(); 如果不传递参数 直接显示和隐藏 没有动画
+        *   stop(); 此方法是停止动画执行，用途:当手速比较快时，同一个动画会执行多次
+        *   show/hide：修改的是元素的width、height、opacity。
+        */
+        $(".input1").click(function () {
+            //判断当前是隐藏还是显示
+            if ($(this).val() === "显示") {
+                $(this).val("隐藏")
+                $(".box1").stop().show(400, function () {
+                    console.log("显示了")
+                })
+
+            } else {
+                $(this).val("显示")
+                $(".box1").stop().hide(400, function () {
+                    console.log("隐藏了")
+                })
+            }
+        })
+
+        //2.滑入(slideUp)与滑出(slideDown)
+        /**
+        *   slideUp(speed, callback); speed:动画时长单位毫秒(可传可不传)，callback：动画执行完后回调(可传可不传)
+        *   slideUp(); 如果不传参数，speed默认是400
+        *   slideToggle(speed,callback); 如果是隐藏状态，那么执行slideDown操作，如果是显示状态，那么执行slideUp操作。
+        *   slideUp/slideDown：修改的是元素的height
+        */
+        $(".input2").click(function () {
+            //方式一：slideToggle()
+            $(".box2").stop().slideToggle();
+            //方式二：判断当前是隐藏还是显示
+            if ($(this).val() === "显示") {
+                $(this).val("隐藏")
+                $(".box2").stop().slideDown(400, function () {
+                    console.log("显示了")
+                })
+            } else {
+                $(this).val("显示")
+                $(".box2").stop().slideUp(400, function () {
+                    console.log("隐藏了")
+                })
+            }
+        })
+
+        //3.淡入(fadeIn)与淡出(fadeOut)
+        /**
+        *   fadeIn(speed, callback); speed:动画时长单位毫秒(可传可不传)，callback：动画执行完后回调(可传可不传)
+        *   fadeIn(); 如果不传参数，speed默认是400
+        *   fadeToggle(speed, callback); 如果当前元素处于隐藏状态，那么执行fadeIn操作，如果处于显示状态，那么执行fadeOut操作。
+        *   fade系列方法：修改的是元素的opacity
+        */
+        $(".input3").click(function () {
+            //方式一: fadeToggle()
+            $(".box3").stop().fadeToggle();
+            //方式二: 判断当前是隐藏还是显示
+            if ($(this).val() === "显示") {
+                $(this).val("隐藏")
+                $(".box3").stop().fadeIn(400, function () {
+                    console.log("显示了")
+                })
+            } else {
+                $(this).val("显示")
+                $(".box3").stop().fadeOut(400, function () {
+                    console.log("隐藏了")
+                })
+            }
+        })
+
+        //4.自定义动画animate
+        /**
+        *   $(selector).animate({params},speed,easing,callback); 
+        *   {params}：要执行动画的CSS属性，带数字（必选）
+        *   speed：执行动画时长（可选）
+        *   easing：执行速度(可选) “swing”：在开头和结尾移动慢，在中间移动速度快 “linear”：匀速移动
+        *   callback：动画执行完后立即执行的回调函数（可选）
+        */
+        $(".input4").click(function () {
+            $(".box4").animate({
+                left: 400,
+                width: 400,
+                height: 400,
+            },3000,"swing",function(){
+                console.log("执行完毕")
+            })
+        })
+
+    </script>
+
+
+
+</body>
+
+</html>

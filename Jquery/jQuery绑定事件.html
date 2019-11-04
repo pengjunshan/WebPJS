@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="绑定事件"> 
+    <input type="button" value="解绑事件">
+    <br>
+
+    <div class="box">
+
+    </div>
+
+    <script>
+
+        let $box = $(".box")
+
+        //1.绑定事件
+        //传统事件绑定, 参数 1、事件类型 参数 2、回调函数
+        $("input").eq(0).on("click",function(){
+            let s = $("<span>我会span</span>")
+            s.css("color","red")
+            s.appendTo($box)
+        })
+
+        //委托事件绑定，参数 1、事件类型 参数 2、选择器 参数 3、回调函数
+        $box.on("click","span",function(){
+            console.log("我是委托事件绑定")
+        })
+
+        //2.解绑事件
+        //解绑匹配元素的所有事件
+        $("input").eq(1).on("click",function(){
+            $box.off()
+        })
+        //解绑匹配元素的所有click事件
+        $("input").eq(1).on("click",function(){
+            $box.off("click")
+        })
+        //解绑所有代理的click事件，元素本身的事件不会被解绑这个选择器是父级元素 
+        $("input").eq(1).on("click",function(){
+            $box.off("click","span")
+        })
+        
+    </script>
+
+</body>
+</html>

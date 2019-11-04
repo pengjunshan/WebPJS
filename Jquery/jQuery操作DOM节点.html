@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+</head>
+
+<body>
+
+    <div class="box">
+        <p>胡辣汤、油条、豆腐脑、热包子</p>
+    </div>
+
+    <div class="xm">
+        <p>谁TM买小米</p>
+        <div>菠菜！贱卖！</div>
+    </div>
+
+    <script>
+        //1.创建元素
+        /**
+        *   $(htmlStr);  htmlStr：html格式的字符串
+        */
+        var $s = $("<span>这是一个span元素</span>");
+        console.log($s)
+
+        //2.添加元素
+        /**
+        *   $(father).append(sonHtml); father:添加到father标签中  sonHtml：要添加的元素html字符串
+        *   append()方法是添加到父级的最后面
+        *   prepend()方法是添加到父级的最前面
+        */
+        $(".box").append("<span>我到最前面</span>");
+        $(".box").prepend("<span>我到最后面</span>");
+
+        /**
+        *   son.appendTo($(father)); 子元素添加到父元素中
+        *   appendTo和prependTo方法和append方法和prepend的作用是一模一样的，只不过是调用的对象颠倒了而已
+        */
+        var p = $('<p>我是一个p</p>');
+        var p1 = $('<p>我是二个p</p>');
+        p.prependTo($(".box"))
+        p1.appendTo($(".box"))
+
+        /**
+        *   before方法是在当前元素的前面添加 （与当前元素是兄弟关系）
+        *   after方法是在当前元素的后面添加 （与当前元素是兄弟关系）
+        */
+        var p2 = $('<p>我是三个p</p>');
+        var p3 = $('<p>我是四个p</p>');
+        $(".box").before(p2)
+        $(".box").after(p3)
+
+
+        //3.清空元素
+        /**
+        *   empty()：清空指定节点的所有元素，自身保留(清理门户)
+        */
+        $(".xm").empty();
+
+        //4.删除元素
+        /**
+        *   remove()：相比于empty()，自身也删除（自杀）
+        */
+        $(".xm").remove();
+
+        //5.克隆元素
+        /**
+        *   clone(true); 参数：布尔值  不管是false还是true 都是深拷贝
+        *   false 不会复制元素身上的事件; true 会复制元素身上的事件;
+        *   返回值为复制的新元素，和原来的元素没有任何关系了。即修改新元素，不会影响到原来的元素。
+        */
+        let $new = $(".box>p").clone()
+        $(".box").append($new)
+
+    </script>
+</body>
+
+</html>
