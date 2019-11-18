@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+</head>
+
+<body>
+    <div class="">李小璐</div>
+    <div id="pgone" data-title="大家好，我是PGone" data-job="专业戴帽子">PGone</div>
+    <input type="button" value="切换">
+
+    <script>
+        $(function () {
+            
+            let $div = $("div");
+            var div = document.querySelector("div");
+            //原生className操作类名
+            div.className = "aa bb";
+
+            //juery操作类名
+            // $div.addClass("cc dd")
+
+            /*
+            *   html5 新增一个非常简单的操作类样式的api 
+            */
+            //1.添加类, 给当前元素添加一个类 dom.classList.add("类名")
+            div.classList.add("cc")
+
+            //2.移除类, 移除当前元素的一个类 dom.classList.remove(类名)
+            div.classList.remove("aa")
+
+            //3. 判断类 dom.classList.contains("类名") 返回值布尔类型
+            let isHave = div.classList.contains("bb")
+            console.log(isHave)
+
+            //4. 切换类 dom.classList.toggle("类名"); 有就删除类名 没有就添加类名
+            div.classList.toggle("aa")
+
+            let pg = document.getElementById("pgone")
+
+            /*
+            *   在之前的工作, 我们都是通过 getAttribute setAttribute 来操作自定义属性的 
+            *   html5 提供一个解决方案: dataset
+            */
+            //原生getAttribute
+            console.log(pg.getAttribute("data-title"))
+
+            //h5通过dataset
+            console.log(pg.dataset.job);
+
+            //添加或者修改属性
+            pg.dataset.love = "lxl"
+
+        })
+    </script>
+</body>
+
+</html>

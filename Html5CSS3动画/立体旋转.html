@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            /* 一般设置给整个3d整体的父级 */
+            /* perspective: 1000px; */
+            transform-style: preserve-3d;
+        }
+
+        .father {
+            width: 120px;
+            height: 200px;
+            border: 1px solid #000;
+            margin: 10px auto;
+            position: relative;
+            /* 父元素Y轴偏移一点 否则看不出效果 */
+            transform: rotateY(26deg);
+
+            /* perspective 只是使子盒子拥有近大远小的视觉效果 */
+            /* perspective: 1000px; */
+
+            /* 真正实现3d transform-style: preserve-3d 实现的 */
+            /* 默认值 flat 表示平面布局 */
+            /* preserve-3d 是我们真正使得子盒子按三维立体进行布局, 一定要加给父元素 */
+            transform-style: preserve-3d;
+        }
+
+        .son1,
+        .son2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            height: 200px;
+        }
+
+        .son1 {
+            background-color: blue;
+        }
+
+        .son2 {
+            background-color: red;
+            transform: rotateX(45deg);
+        }
+
+
+        .lt {
+            width: 180px;
+            height: 180px;
+            border: 1px solid #000;
+            margin: 60px auto;
+            position: relative;
+            transition: all 5s;
+            transform-style: preserve-3d;
+        }
+
+        .lt:hover {
+            /* XYZ都旋转 */
+            transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+        }
+
+        .lt li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 180px;
+            height: 180px;
+        }
+
+        .lt li:nth-child(1) {
+            background-color: blue;
+            transform: translateZ(90px);
+        }
+
+        .lt li:nth-child(2) {
+            background-color: blueviolet;
+            transform: rotateX(90deg) translateZ(90px);
+        }
+
+        .lt li:nth-child(3) {
+            background-color: brown;
+            transform: rotateX(180deg) translateZ(90px);
+        }
+
+        .lt li:nth-child(4) {
+            background-color: chartreuse;
+            transform: rotateX(270deg) translateZ(90px);
+        }
+
+        .lt li:nth-child(5) {
+            background-color: pink;
+            transform: rotateY(-90deg) translateZ(90px);
+        }
+
+        .lt li:nth-child(6) {
+            background-color: purple;
+            transform: rotateY(90deg) translateZ(90px);
+        }
+
+        .fg {
+            width: 600px;
+            height: 50px;
+            border: 1px solid black;
+            margin: 20px auto;
+        }
+
+        .fg li {
+            width: 100px;
+            height: 50px;
+            float: left;
+            position: relative;
+            transition: all 1s;
+            /* 真正实现 3d 效果, 不一定需要加上 perspective */
+            /* 由于是span做的3d变换, 所以 transform-style: preserve-3d; 加给父盒子li*/
+            transform-style: preserve-3d;
+        }
+
+        .fg li:hover {
+            transform: rotateX(-90deg);
+        }
+
+        .fg li span {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+        }
+
+        .fg li span:nth-child(1) {
+            background-color: blue;
+            transform: translateZ(25px);
+        }
+
+        .fg li span:nth-child(2) {
+            background-color: pink;
+            transform: rotateX(90deg) translateZ(25px);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- transform-style -->
+    <!-- transform-style 属性规定如何在 3D 空间中呈现被嵌套的元素。注意这个属性也是给父元素添加。 -->
+    <!-- 一个3d元素可以没有perspective，但是不能没有transform-style -->
+    <div class="father">
+        <div class="son1"></div>
+        <div class="son2"></div>
+    </div>
+
+    <!-- 立体案例 -->
+    <ul class="lt">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <!-- 翻滚 -->
+    <ul class="fg">
+        <li>
+            <span>吃饭了吗</span>
+            <span>红烧猪蹄</span>
+        </li>
+        <li>
+            <span>吃饭了吗</span>
+            <span>鱼香肉丝</span>
+        </li>
+        <li>
+            <span>吃饭了吗</span>
+            <span>可乐鸡翅</span>
+        </li>
+        <li>
+            <span>吃饭了吗</span>
+            <span>山东煎饼</span>
+        </li>
+        <li>
+            <span>吃饭了吗</span>
+            <span>天津包子</span>
+        </li>
+        <li>
+            <span>吃饭了吗</span>
+            <span>欧洲牛排</span>
+        </li>
+    </ul>
+
+</body>
+
+</html>

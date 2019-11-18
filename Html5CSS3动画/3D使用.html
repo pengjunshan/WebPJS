@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            /* perspective 给父元素加, 让子元素拥有近大远小的透视效果 */
+            /* 1. 没有 perspective, 就没有近大远小的效果 */
+            /* 2. perspective 可以辅助我们查看3d效果 */
+            /* 3. 1000px 指观察者离屏幕的距离 */
+            /* perspective: 1000px; */
+            /* transform-style: preserve-3d; */
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            transition: all 1s;
+        }
+
+        /* rotate */
+        .rt:hover {
+            /* 值可以是正值或负值 可以连写多个旋转角度 */
+            /* 1.transform: rotateX(*deg);让元素在平面2D中旋转 */
+            /* 心中自有3个轴 */
+            /* transform: rotate(45deg); */
+
+            /* 1.伸出左手, 大拇指指向轴的正方向, 手指卷曲的方向, 就是旋转的正方向 */
+            /* transform: rotateX(45deg); */
+            /* 2.伸出左手，大拇指指朝下正方向，手指卷曲的方向, 就是旋转的正方向 */
+            /* transform: rotateY(45deg); */
+            /* 3.伸出左手，大拇指指脸正方向，手指卷曲的方向, 就是旋转的正方向*/
+            /* transform: rotateZ(45deg); */
+            /* transform: rotateX(45deg) rotateY(45deg) rotateZ(45deg); */
+            /*  transform: rotate3d(x,y,z,adeg) x y z 为0时不旋转、为1时旋转、a是角度*/
+            transform: rotate3d(1,0,0,45deg);
+        }
+
+        .tl:hover {
+            /* transform: translateX(100px); */
+            /* transform: translateY(100px); */
+            /* transform: translateZ(50px); */
+            /* transform: translate3d(x, y, z) xyz是三轴移动的距离*/
+            
+            transform: translate3d(100px, 100px, 100px);
+        }
+
+        .father {
+            width: 200px;
+            height: 400px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            position: relative;
+            /* 父元素Y轴偏移一点 否则看不出效果 */
+            transform: rotateY(26deg);
+
+            /* perspective 只是使子盒子拥有近大远小的视觉效果 */
+            /* perspective: 1000px; */
+
+            /* 真正实现3d transform-style: preserve-3d 实现的 */
+            /* 默认值 flat 表示平面布局 */
+            /* preserve-3d 是我们真正使得子盒子按三维立体进行布局, 一定要加给父元素 */
+            transform-style: preserve-3d;
+        }
+
+        .son1,
+        .son2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 400px;
+        }
+
+        .son1 {
+            background-color: blue;
+        }
+
+        .son2 {
+            background-color: red;
+            transform: rotateX(45deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- perspective透视 -->
+    <!-- 电脑显示屏是一个2D的平面，因为我们看不出来旋转的方向，通过perspective属性，指定观察者与「z=0」平面的距离，使具有三维位置变换的元素产生透视效果，单位是px。 -->
+    <!-- 注意：当为元素定义 perspective 属性时，其子元素会获得透视效果。(给父元素加) -->
+
+    <!-- rotate旋转 -->
+    <img class="rt" src="../img/2.jpg"></img>
+
+    <!-- translate平移 -->
+    <img class="tl" src="../img/2.jpg"></img>
+
+    <!-- transform-style -->
+    <!-- transform-style 属性规定如何在 3D 空间中呈现被嵌套的元素。注意这个属性也是给父元素添加。 -->
+    <!-- 一个3d元素可以没有perspective，但是不能没有transform-style -->
+    <div class="father">
+        <div class="son1"></div>
+        <div class="son2"></div>
+    </div>
+
+</body>
+
+</html>

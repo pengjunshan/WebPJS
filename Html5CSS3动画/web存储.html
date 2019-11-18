@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+    <script src="jquery.cookie.js"></script>
+</head>
+
+<body>
+
+    <script>
+        /*
+        *   cookie 可存大小 4k
+        *   传统方式，我们以document.cookie进行存储，但是存储起来特别麻烦，并且，存储大小只有4k，
+        *   常用来做自动登录，即存储用户的账号和密码信息。每次请求都会带上cookie
+        *   cookie是以字符串形式存在的，这个字符串有固定的格式：key=value;key1=value1;
+        * */
+        //存cookie
+        document.cookie = "name = pgone";
+        document.cookie = "love = cisi";
+        //取cookie
+        let co = document.cookie;
+        console.log(document.cookie)
+
+        /*
+        *   使用原生js操作cookie太过麻烦，尤其是cookie的获取和删除操作，使用jquery.cookie插件，能够简化我们的操作。
+        *   存cookie  取cookie  删除 cookie 设置 cookie
+        */
+        //1.存cookie 或者 设置 cookie
+        $.cookie("hxm", "baby");
+        //2.取cookie
+        let hxm = $.cookie("hxm")
+        console.log(hxm)
+        //3.删cookie
+        $.removeCookie("hxm")
+
+        // 1. sessionStorage
+        // 特点: (1) 生命周期, 浏览器窗口一关闭, 就没了
+        //       (2) 不能在多个窗口下共享数据。
+        //       (3) 大小为5M
+
+        // 2. localStorage(重点)
+        // 特点: (1) 永久存储, 除非手动删除
+        //       (2) 可以在多个窗口下共享数据
+        //       (3) 大小为5M
+
+        // 上面两个api操作方式一模一样
+        // 1. 设置 setItem(key,value)
+        // 2. 读取 getItem(key)
+        // 3. 删除 removeItem(key)
+        // 4. 清空所有 clear() 不要轻易用会把其它地方存储的值都会清除掉
+
+        //sessionStorage
+        sessionStorage.setItem("song", "邓紫棋")
+        console.log(sessionStorage.getItem("song"))
+        sessionStorage.removeItem("song")
+        console.log(sessionStorage.getItem("song"))
+        sessionStorage.clear();
+
+        //localStorage
+        localStorage.setItem("dlrb", "迪丽热巴")
+        console.log(localStorage.getItem("dlrb"))
+        localStorage.removeItem("dlrb")
+        console.log(localStorage.getItem("dlrb"))
+        localStorage.clear()
+
+
+        /*
+        *   localStorage 中只支持存字符串
+        */
+        var obj = {
+            name: "鹏鹏",
+            age: "18"
+        }
+
+        //sessionStorage 可以存储对象
+        sessionStorage.setItem("obj", obj)
+        console.log(sessionStorage.getItem("obj"))
+
+        //不能存储对象
+        localStorage.setItem("obj1", obj);
+        console.log(localStorage.getItem("ojb1"));//打印为null
+
+        // 注意: 可以转换成 JSON 字符串再存储
+        localStorage.setItem("obj2", JSON.stringify(obj));
+        // 取, 拿到的是 JSON字符串
+        var jsonStr = localStorage.getItem("obj2");
+        // 解析
+        console.log(JSON.parse(jsonStr));
+    </script>
+</body>
+
+</html>

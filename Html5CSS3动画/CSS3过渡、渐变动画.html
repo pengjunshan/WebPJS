@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+      
+        .clearfix {
+            clear: both;
+        }
+
+        .clearfix:before,
+        .clearfix:after {
+            content: "";
+            display: block;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+        .box,
+        .box1,
+        .box2 {
+            width: 200px;
+            height: 200px;
+            margin: 10px 30px;
+            border: 1px solid #000;
+            float: left;
+        }
+
+
+        /* 过渡CSS */
+        .box {
+            opacity: 0.5;
+            color: white;
+            background-color: blue;
+            /* 方式一：分开写四个属性 */
+            /* 1.transition-property 设置过渡属性 可以单写属性 也可以用all代替全部 */
+            /* transition-property: width,height; */
+            transition-property: all;
+            /* 2.transition-duration 设置过渡时间 单位s */
+            transition-duration: 2s;
+            /* 3.transition-timing-function 设置过渡动画效果 ease:先慢后快再慢 linear:匀速 */
+            transition-timing-function: ease;
+            /* 4.transition-delay 设置过渡延时 单位s */
+            transition-delay: 0.5s;
+
+            /* 方式二：合写 只需要注意, 延迟时间写在执行时间后面就可以了其它顺序无序 */
+            transition: all 1s linear 0.2s;
+        }
+
+        .box:hover {
+            width: 250px;
+            height: 250px;
+            opacity: 1;
+            background-color: red;
+        }
+
+        /* 线性渐变 */
+        .box1 {
+            /* 三步骤：1. 需要渐变方向 2. 渐变颜色 3. 渐变范围 */
+            /* background-image: linear-gradient(方向, 颜色 范围, 颜色 范围...) */
+            /* 方向 角度: 0deg 记忆方式, 时钟方向, 向上0deg, 顺时针旋转 */
+            /*  to right === 90deg  to bottom === 180deg  默认 180deg to bottom */
+
+            /* 方式一：角度，颜色 范围，颜色 范围，颜色 范围，颜色 范围 */
+            /* background-image: linear-gradient(90deg,red 0%,red 20%,blue 50%,blue 100%); */
+            /* 方式二：角度，颜色 范围，颜色范围  开始和结尾默认0% 100%*/
+            /* background-image: linear-gradient(to right,red 20%,blue 50%); */
+            /* 方式三：角度默认180deg */
+            background-image: linear-gradient(red 20%, blue 50%);
+        }
+
+        /* 径向渐变 */
+        .box2 {
+            /* 步骤： 半径, 圆心,颜色, 颜色范围  */
+            /* 1. 半径 at 圆心位置X Y, 颜色 范围, 颜色 范围 ..... */
+            /* 2. 超出渐变范围的用最外面的颜色填充 */
+            /* background-image: radial-gradient(100px at 100px 100px ,red 50%,yellow 50%); */
+            /* 3.如果不写范围, 平均分配 */
+            background-image: radial-gradient(100px at 100px 100px, red, yellow, pink);
+        }
+
+        .sbox {
+            width: 600px;
+            height: 360px;
+            margin: 10px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sbox img {
+            width: 600px;
+            height: 360px;
+        }
+
+        .sbox:hover::before{
+            /* transform只能设置一次 后面的会把前面的覆盖掉 */
+            /* 鼠标移到图片 斜切平移 */
+            transform: translateX(1000px) skew(-45deg);
+            transition: all 1s;
+        }
+        .sbox:hover::after{
+              /* 鼠标移到图片 延迟0.2s斜切平移 */
+            transform: translateX(1000px) skew(-45deg);
+            transition: all 1s 0.2s;
+        }
+        
+        .sbox::before , .sbox::after{
+            content: "";
+            width: 20px;
+            height: 360px;
+            position: absolute;
+            top: 0px;
+            left: -210px;
+
+            /*设置斜切 */
+            transform: skew(-45deg);
+
+            /* 设置线性渐变 */
+            background-image: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 1),
+                    rgba(255, 255, 255, 0));
+        }
+
+    </style>
+</head>
+
+<body style="background-color: black;">
+
+    <div class="pbox clearfix">
+        <!-- transition:过渡 当前元素只要有“属性”发生变化时，可以平滑的进行过渡。并不仅仅局限于hover状态,也可以通过修改class -->
+        <div class="box">过渡属性讲解</div>
+
+        <!-- linear-gradient：线性渐变 -->
+        <div class="box1">线性渐变</div>
+
+        <!-- radial-gradient: 径向渐变 -->
+        <div class="box2">径向渐变</div>
+    </div>
+
+    <!-- 扫光效果 -->
+    <p style="color: white;margin-left: 50px;">我是扫光效果案例</p>
+    <div class="sbox">
+        <img src="../img/2.jpg" alt="">
+    </div>
+
+</body>
+
+</html>

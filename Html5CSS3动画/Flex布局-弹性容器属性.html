@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .son {
+            width: 60px;
+            height: 60px;
+            border: 1px solid red;
+            margin: 5px;
+            box-sizing: border-box;
+            background-color: blanchedalmond;
+        }
+
+        .flex-direction {
+            width: 600px;
+            display: flex;
+            background-color: gray;
+            margin: 10px auto;
+            /* 横向排列 主轴为水平方向，起点在左端 默认row*/
+            flex-direction: row;
+            /* 横向排列 主轴为水平方向，七点在右端 */
+            /* flex-direction: row-reverse; */
+            /* 纵向排列 主轴为垂直方向，起点在上端。 */
+            /* flex-direction: column; */
+            /* 纵向排列 主轴为垂直方向，起点在下端 */
+            /* flex-direction: column-reverse; */
+        }
+
+        .flex-wrap {
+            width: 600px;
+            display: flex;
+            background-color: gray;
+            margin: 10px auto;
+            /* 不换行 自动压缩 默认值*/
+            flex-wrap: nowrap;
+            /* 换行 向下换行 */
+            /* flex-wrap: wrap; */
+            /* 换行 向下换行 */
+            /* flex-wrap: wrap-reverse; */
+        }
+
+        .flex-flow {
+            width: 600px;
+            display: flex;
+            background-color: gray;
+            margin: 10px auto;
+            flex-flow: row wrap-reverse;
+        }
+
+        .justify-content {
+            width: 600px;
+            height: 200px;
+            display: flex;
+            margin: 10px auto;
+            background-color: gray;
+            /* 注意：是在主轴上的对齐方式 */
+
+            /* 左对齐 */
+            /* justify-content: flex-start; */
+            /* 右对齐 */
+            /* justify-content: flex-end; */
+            /* 居中 */
+            /* justify-content: center; */
+            /* 两端对齐，项目之间的间隔都相等 */
+            /* justify-content: space-between; */
+            /* 每个项目两侧的间隔相等 */
+            justify-content: space-around;
+        }
+
+        .align-items {
+            width: 600px;
+            height: 300px;
+            display: flex;
+            margin: 10px auto;
+            background-color: gray;
+            flex-flow: row wrap;
+            /* 注意：是在交叉轴上的对齐方式 管单行*/
+
+            /* 交叉轴的起点对齐 */
+            /* align-items: flex-start; */
+            /* 交叉轴的终点对齐 */
+            /* align-items: flex-end; */
+            /* 交叉轴的中点对齐 */
+            /* align-items: center; */
+            /* 项目的第一行文字的基线对齐 */
+            align-items: baseline;
+
+        }
+
+        .align-items>div:nth-child(1) {
+            font-size: 26px;
+        }
+
+        .align-content {
+            width: 600px;
+            height: 300px;
+            display: flex;
+            margin: 10px auto;
+            background-color: gray;
+            flex-flow: row wrap;
+            /* 注意：是在交叉轴上的对齐方式  管整体*/
+
+            /* 轴线占满整个交叉轴 默认stretch */
+            /* align-content: stretch; */
+            /* 与交叉轴的起点对齐 */
+            /* align-content: flex-start; */
+            /* 与交叉轴的终点对齐 */
+            /* align-content: flex-end; */
+            /* 与交叉轴的中点对齐 */
+            /* align-content: center; */
+            /* 与交叉轴两端对齐，轴线之间的间隔平均分布 */
+            /* align-content: space-between; */
+            /* 每根轴线两侧的间隔都相等 */
+            align-content: space-around;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- flex-direction -->
+    <div class="flex-direction">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+        <div class="son">老四</div>
+        <div class="son">老五</div>
+    </div>
+
+    <!-- flex-wrap -->
+    <div class="flex-wrap">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+        <div class="son">老四</div>
+        <div class="son">老五</div>
+        <div class="son">老六</div>
+        <div class="son">老七</div>
+        <div class="son">老八</div>
+        <div class="son">老九</div>
+        <div class="son">老十</div>
+    </div>
+
+    <!-- flex-flow -->
+    <div class="flex-flow">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+        <div class="son">老四</div>
+        <div class="son">老五</div>
+        <div class="son">老六</div>
+        <div class="son">老七</div>
+        <div class="son">老八</div>
+        <div class="son">老九</div>
+        <div class="son">老十</div>
+    </div>
+
+    <!-- justify-content -->
+    <div class="justify-content">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+        <div class="son">老四</div>
+        <div class="son">老五</div>
+    </div>
+
+    <!-- align-items -->
+    <div class="align-items">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+        <div class="son">老四</div>
+        <div class="son">老五</div>
+    </div>
+
+    <!-- align-content -->
+    <div class="align-content">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+        <div class="son">老四</div>
+        <div class="son">老五</div>
+        <div class="son">老六</div>
+        <div class="son">老七</div>
+        <div class="son">老八</div>
+        <div class="son">老九</div>
+        <div class="son">老十</div>
+    </div>
+
+
+
+</body>
+
+</html>

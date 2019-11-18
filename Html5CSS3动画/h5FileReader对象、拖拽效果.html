@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .source {
+            width: 140px;
+            height: 140px;
+            background-color: red;
+        }
+
+        .target {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div></div>
+
+    <!-- multiple：可以实现多文件上传 accept：限制文件类型，自行百度 -->
+    <!--<input type="file" multiple>-->
+    <input type="file" multiple accept="image/jpeg,image/jpg,image/png">
+
+    <!-- 设置draggable="true"属性 是可以被拖拽的-->
+    <div draggable="true" class="source"></div>
+    <div class="target"></div>
+
+    <script>
+
+        /**
+        *   文件上传
+        */
+        var input = document.querySelector("input");
+        var div = document.querySelector("div");
+        input.addEventListener("change", function () {
+            //这个属性是FileList对象，是一个伪数组，里面存储着上传的所有文件，
+            console.log(input.files)
+            // 1. 获取文件
+            let file = input.files[0];
+            // 2. 创建文件读取对象
+            let fileReader = new FileReader();
+            // 3. 调用方法读取文件
+            fileReader.readAsDataURL(file);
+            // 得到结果(注意读取是需要时间的)
+            console.log(fileReader.result);
+            // 4. 等待读取完成 onload
+            fileReader.onload = function () {
+                console.log(fileReader.result);
+                // 结果是 base64 图片字符串, 可以直接当成图片使用
+                div.innerHTML = '<img src="' + fileReader.result + '">';
+            }
+        });
+
+        /**
+        *   拖拽效果
+        */
+        var source = document.querySelector(".source");
+        var target = document.querySelector(".target");
+        // 当拖拽元素在目标元素上时触发
+        target.addEventListener("dragover", function (e) {
+            console.log("来呀，快活啊")
+            // 浏览器默认阻止了拖拽
+            e.preventDefault();
+        });
+        // 当拖拽元素在目标元素上松开鼠标时触发
+        target.addEventListener("drop", function (e) {
+            console.log("进来了")
+            target.appendChild(source)
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .son {
+            width: 60px;
+            height: 60px;
+            border: 1px solid red;
+            margin: 5px;
+            box-sizing: border-box;
+            background-color: blanchedalmond;
+        }
+
+        .order,
+        .flex-grow,
+        .flex-shrink,
+        .flex-basis,
+        .flex,
+        .align-self {
+            width: 600px;
+            height: 100px;
+            display: flex;
+            margin: 10px auto;
+            background-color: gray;
+        }
+
+        .order>div:nth-child(1) {
+            /* 数值越小，排列越靠前 默认为0 */
+            /* order: 2; */
+        }
+
+        .order>div:nth-child(2) {
+            order: 10;
+        }
+
+        .order>div:nth-child(3) {
+            order: -1;
+        }
+
+        .order>div:nth-child(4) {
+            order: 5;
+        }
+
+        .order>div:nth-child(5) {
+            order: 8;
+        }
+
+        .flex-grow>div {
+            flex-grow: 1;
+        }
+
+        .flex-grow>div:nth-child(2) {
+            flex-grow: 2;
+        }
+
+        .flex-shrink>div {
+            flex-shrink: 1;
+        }
+
+        .flex-shrink>div:nth-child(1) {
+            flex-shrink: 0;
+        }
+
+        .flex-basis>div:nth-child(2) {
+            /* flex-basis优先级大于width */
+            flex-basis: 100px;
+        }
+
+        .flex>div {
+            /* 等于flex-grow：1; */
+            flex: 1;
+        }
+
+        .align-self {
+            height: 240px;
+            align-items: flex-start;
+        }
+
+        .align-self>div:nth-child(2) {
+            align-self: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- order -->
+    <div class="order">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+        <div class="son">老四</div>
+        <div class="son">老五</div>
+    </div>
+
+    <!-- flex-grow -->
+    <div class="flex-grow">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+    </div>
+
+    <!-- flex-shrink -->
+    <div class="flex-shrink">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+        <div class="son">老四</div>
+        <div class="son">老五</div>
+        <div class="son">老六</div>
+        <div class="son">老七</div>
+        <div class="son">老八</div>
+        <div class="son">老九</div>
+        <div class="son">老十</div>
+        <div class="son">老九</div>
+        <div class="son">老十</div>
+    </div>
+
+    <!-- flex-basis -->
+    <div class="flex-basis">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+        <div class="son">老四</div>
+        <div class="son">老五</div>
+        <div class="son">老六</div>
+        <div class="son">老七</div>
+        <div class="son">老八</div>
+        <div class="son">老九</div>
+        <div class="son">老十</div>
+        <div class="son">老九</div>
+        <div class="son">老十</div>
+    </div>
+
+    <!-- flex -->
+    <div class="flex">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+        <div class="son">老四</div>
+    </div>
+
+    <!-- align-self -->
+    <div class="align-self">
+        <div class="son">老大</div>
+        <div class="son">老二</div>
+        <div class="son">老三</div>
+        <div class="son">老四</div>
+    </div>
+</body>
+
+</html>

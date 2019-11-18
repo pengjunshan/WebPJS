@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #000;
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            background-color: red;
+            box-shadow: 0px 0px 4px 4px #fff;
+            /* 使用动画 */
+            /* animation: myAnimaiton 2s infinite; */
+            /* 1. 动画名称 */
+            animation-name: myAnimaiton;
+            /* 2. 动画执行时间 */
+            animation-duration: 2s;
+            /* 3. 动画执行次数 */
+            /*animation-iteration-count: 2;*/
+            /* infinite 无限次 */
+            animation-iteration-count: infinite;
+            /* 4. 延迟时间 */
+            /*animation-delay: 1s;*/
+
+            /* 5. 动画效果 */
+            /* animation-timing-function: linear; */
+            /* steps(n) 按照步数执行, 可以用来实现帧动画 */
+            /* animation-timing-function: steps(3); */
+
+            /* 6. 动画方向 */
+            /* alternate 交替执行, 可以让动画序列来回交替执行 */
+            /* animation-direction: alternate; */
+
+            /* 7. 动画最终状态 forwards 停留在最终动画状态 */
+            /*animation-fill-mode: forwards;*/
+
+        }
+
+        div:hover {
+            /* 8. 动画播放状态 */
+            animation-play-state: paused;
+        }
+
+        /* 自定义动画 */
+        @keyframes myAnimaiton {
+            0% {
+                transform: scale(1.0)
+            }
+
+            100% {
+                transform: scale(1.5)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>奔跑吧, 兄弟！</div>
+</body>
+
+</html>

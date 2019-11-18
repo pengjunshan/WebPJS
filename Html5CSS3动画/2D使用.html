@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 140px;
+            height: 140px;
+            line-height: 140px;
+            background-color: blue;
+            transition: all 2s;
+            margin: 20px 50px;
+            color: white;
+            text-align: center;
+        }
+
+        .tl:hover {
+            /* 移动 translate(x, y) 可以改变元素的位置，x、y可为负值 */
+            /* transform: translate(300px,300px); */
+            /* transform: translate(-100px,-100px); */
+
+            /* 除了可以像素值，也可以是百分比，相对于自身的宽度或高度 */
+            transform: translate(100%, 100%);
+            /* transform: translate(-50%,-50%); 常用到居中使用 */
+        }
+
+        .se:hover {
+            /* 缩放 scale(x, y) 可以对元素进行水平和垂直方向的缩放，x、y的取值可为小数； */
+            transform: scale(1.5);
+            /* transform: scale(1,2); */
+        }
+
+        .rt:hover {
+            /* 旋转 rotate(deg) 可以对元素进行旋转，正值为顺时针，负值为逆时针 */
+            /* transform: rotate(45deg); */
+            transform: rotate(-60deg);
+        }
+
+        .sk:hover {
+            /* 斜切 skew(x, y)deg 传角度, 可以让盒子变倾斜, skewX 是纵向拍扁的效果, skewY 是横向拍扁的效果 */
+            transform: skew(20deg, 20deg);
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* 给 body 添加径向渐变 */
+        body {
+            background-image: radial-gradient(200px at right top, red 10%, yellow 20%, white, skyblue);
+        }
+
+        img {
+            position: absolute;
+            left: 0px;
+            bottom: -190px;
+        }
+
+        body:hover img {
+            transition: all 4s;
+            transform: translate(1400px, -800px) scale(0) rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 平移 translate 移动位置相当于从自身原来位置 -->
+    <div class="tl">平移 translate</div>
+
+    <!-- 缩放 scale -->
+    <div class="se">缩放 scale</div>
+
+    <!-- 旋转 rotate -->
+    <div class="rt">旋转 rotate</div>
+
+    <!-- 斜切 skew -->
+    <div class="sk">斜切 skew</div>
+
+    <!-- 飞机飞向太阳案例 -->
+    <img src="../img/rocket.png" alt="">
+
+</body>
+
+</html>

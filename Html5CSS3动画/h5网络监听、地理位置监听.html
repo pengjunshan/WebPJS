@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 400px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            margin: 0 auto;
+            transition: all 1s;
+            color: white;
+        }
+
+        .online {
+            background-color: green;
+        }
+
+        .offline {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="online">监听网络状态案例</div>
+
+    <div id="location"></div>
+
+    <script>
+        let line = document.querySelector("div")
+        /*
+        *   在 html5 提供可以判断网状态的 api
+        *   navigator.onLine返回用户当前的网络状况，是一个布尔值 true:联网  false:无网
+        * */
+        if (navigator.onLine) {
+            line.className = "online";
+            line.innerHTML = "有网，可以打LOL";
+        } else {
+            line.innerHTML = "无网，可以打单击CF";
+            line.className = "offline";
+        }
+
+        /**
+         * 切换到联网状态时触发 online
+         * */
+        window.addEventListener("online", function () {
+            line.className = "online";
+            line.innerHTML = "有网，可以打LOL";
+        });
+
+        /**
+         * offline 断网,离线状态
+         * */
+        window.addEventListener("offline", function () {
+            line.innerHTML = "无网，可以打单击CF";
+            line.className = "offline";
+        })
+
+        /*
+        *   在html5 中 提供了获取用户地理位置的 api
+        *   获取位置的坐标是 google地图的坐标
+        *   navigator.geolocation.getCurrentPosition(successFuc, errorFuc)
+        *   参数1: 获取位置成功的回调函数, 会给我们一个 location 参数对象
+        *   参数2: 获取位置失败的回调函数
+        **/
+        let locatDiv = document.getElementById("location");
+
+        //获取当前的地理位置信息
+        navigator.geolocation.getCurrentPosition(function (location) {
+            console.log("成功的回调函数")
+
+            var longitude = location.coords.longitude; // 经度
+            var latitude = location.coords.latitude; // 纬度
+            var accuracy = location.coords.accuracy; // 精准度
+            var altitude = location.coords.altitude; // 海拔
+
+            var str = '<p>经度:' + longitude + ' </p>' +
+                '<p>纬度:' + latitude + ' </p>' +
+                '<p>精准度:' + accuracy + ' </p>' +
+                '<p>海拔:' + altitude + ' </p>';
+            locatDiv.innerHTML = str;
+        }, function (error) {
+            console.log("失败的回调函数")
+        });
+
+        //重复的获取当前的地理位置信息
+        navigator.geolocation.watchPosition(function (location) {
+            console.log("成功的回调函数")
+
+            var longitude = location.coords.longitude; // 经度
+            var latitude = location.coords.latitude; // 纬度
+            var accuracy = location.coords.accuracy; // 精准度
+            var altitude = location.coords.altitude; // 海拔
+
+            var str = '<p>经度:' + longitude + ' </p>' +
+                '<p>纬度:' + latitude + ' </p>' +
+                '<p>精准度:' + accuracy + ' </p>' +
+                '<p>海拔:' + altitude + ' </p>';
+            locatDiv.innerHTML = str;
+        }, function (error) {
+            console.log("失败的回调函数")
+        });
+
+    </script>
+</body>
+
+</html>

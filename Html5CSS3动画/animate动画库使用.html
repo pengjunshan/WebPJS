@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 1. 引入动画函数库 -->
+    <link rel="stylesheet" href="animate.css">
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+
+        .box {
+            animation: bounceInRight2 2s infinite alternate;
+        }
+
+        /* 直接把animate.css中找到bounceInRight动画拷贝过来 可以进行修改 */
+        @keyframes bounceInRight2 {
+
+            from,
+            60%,
+            75%,
+            90%,
+            to {
+                animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+
+            from {
+                opacity: 0;
+                transform: translate3d(3000px, 0, 0);
+            }
+
+            60% {
+                opacity: 1;
+                transform: translate3d(-25px, 0, 0);
+            }
+
+            75% {
+                transform: translate3d(10px, 0, 0);
+            }
+
+            90% {
+                transform: translate3d(-5px, 0, 0);
+            }
+
+            to {
+                transform: none;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 2. 直接使用设计好的动画库, 直接加类, animated, 选择想要的动画效果 添加效果类 -->
+    <div class="animated bounceInRight">我是引用animate库动画</div>
+
+    <!-- 直接把animate.css中找到bounceInRight动画拷贝过来 可以进行修改 -->
+    <div class="box">我是修改animate库动画</div>
+
+</body>
+
+</html>
