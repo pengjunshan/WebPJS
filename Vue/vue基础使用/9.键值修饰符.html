@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+        <!-- 键值修饰符 包括键盘、鼠标 -->
+        <!-- 13是Enter键的code值 -->
+        <input type="text" v-model='msg' @keyup.13='submit'>
+        <input type="text" v-model='msg2' @keyup.enter='submit2'><br>
+        <!-- 使用自定义键值修饰符 -->
+        <input type="text" v-model='msg' @keyup.f2='submit'>
+    </div>
+
+    <script>
+        // 自定义键值修饰符 有时候写code值是数字的时候并没有语义，所有我们给它定义一下
+        Vue.config.keyCodes.f2 = 113;
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'',
+                msg2:''
+            },
+
+            methods:{
+                submit:function(){
+                    console.log('提交数据='+this.msg)
+                },
+                submit2:function(){
+                    console.log('提交数据='+this.msg2)
+                },
+            }
+        })
+    </script> 
+    
+</body>
+</html>

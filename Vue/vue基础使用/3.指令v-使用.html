@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js文件 -->
+    <script src="../lib/vue.js"></script>
+    <style>
+        .pink {
+      background-color: hotpink;
+    }
+
+    .green {
+      color: green;
+    }
+
+    .fz {
+      font-size: 40px;
+    }
+    /* [] 表示 CSS 的属性选择器 */
+    [v-cloak] {
+      display: none;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- v-text 用来设置当前元素的文本内容，相当于DOM对象的 innerText或textContent -->
+        <div v-text='msg'></div>
+
+        <!-- v-html 更新DOM对象的 innerHTML -->
+        <div v-html='htmlMsg'></div>
+
+        <!-- v-bind 通过v-bind为HTML元素绑定属性，使用data中提供的数据
+            因为 v-bind: 这种使用方式很繁琐，所以，vue提供了一个简化语法 :title
+        -->
+        <!-- <img v-bind:title='msg' v-bind:src='imgPath' v-bind:name='name'> -->
+        <img :title='msg' :src='imgPath' :name='name'><br>
+
+        <!-- v-on 绑定事件,支持js所有的事件类型，  v-on绑定的事件方法都要写在Vue实例中的methods对象中
+            v-on:省略写 @
+        -->
+        <!-- <button v-on:click='getData'>点我</button> -->
+        <button @click='getData("搞啥子")'>点我</button><br>
+
+        <!-- v-model
+            作用：在表单元素上创建双向数据绑定
+            只能用在表单元素中，注意：不同的表达元素，v-model的表现可能会有所不同。
+            比如：v-model操作文本框的value属性，而复选框 v-model 就是操作其选中状态
+        -->
+        <!-- 绑定的是文本框输入的内容 -->
+        <input type="text" v-model='msg'>
+        <!-- 绑定的是复选框是否选中 -->
+        <input type="checkbox" v-model='isCheck'>
+        <input type="radio" v-model='isRadio'><br>
+
+        <!-- v-for list集合
+            作用：基于源数据多次渲染元素或模板块
+            
+        -->
+        <ul>
+            <!--1.item是每一项对象
+                使用 v-for 的时候提供 key 属性，以获得性能提升。
+            -->
+            <li v-for='item in list' :key='item.key'>
+                姓名：{{item.name}} -- 年龄：{{item.age}}
+            </li>
+
+            <!--2.item 为当前项，index 为索引 -->
+            <li v-for='(item,index) in list'>
+                姓名：{{item.name}} -- 年龄：{{item.age}} -- 下标：{{index}}
+            </li>
+        </ul>
+
+        <!-- v-for obj对象 value,key,index顺序不能变 -->
+        <ul>
+            <li v-for='(value,key,index) in csObj'>
+                key={{key}} -- value={{value}} -- index={{index}}
+            </li>
+        </ul>
+
+        <!-- 样式处理 v-bind:class和v-bind:style
+            表达式的类型：字符串、数组、对象（重点）
+        -->
+        <h2 :class='{pink:true,green:true}'>中国惊奇先生</h2>
+        <h2 :class='arrObj'>斗罗大陆</h2>
+        <h2 :style="{ color: activeColor, 'font-size': fontSize + 'px' }">不良人</h2>
+
+        <!-- v-if 
+            根据表达式的值的真假条件是否加载这段代码
+            true:DOM中会加载这段代码
+            false:DOM中不会加载这段代码
+        -->
+        <h3 v-if='isIF'>我是v-if</h3>
+
+        <!-- v-show
+            根据表达式之真假值，切换元素的 display CSS 属性
+            无论true还是false DOM中都会加载这段代码
+        -->
+        <h3 v-show='isShow'>我是v-show</h3>
+
+        <!-- v-pre
+            跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。
+            测试：页面中的msg不会显示data中的内容，因为跳过了表达式编译
+        -->
+        <div v-pre>v-pre跳过编译过程 {{msg}}</div>
+
+        <!-- v-once
+            只渲染元素和组件一次。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能
+            测试：在控制台通过vm对象修改msg,页面显示中的msg内容不会有变化
+        -->
+        <div v-once>v-once跳过编译过程 {{msg}}</div>
+
+        <!-- v-cloak
+            页面中使用 {{}} 的时候，经历了由 {{}} -> 具体内同，这么一个过程，所以页面会造成“闪烁”
+            解决：通过添加 v-cloak 指令，配合 [v-cloak] { display: none; } 避免了页面闪烁
+        -->
+        <div v-cloak>{{msg}}</div>
+
+    </div>
+
+    <!-- 
+        解释：指令 (Directives) 是带有 v- 前缀的特殊属性
+        作用：当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM
+     -->
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '邓紫棋我喜欢你',
+                htmlMsg: '<span>你爱我吗？</span>',
+                imgPath: '../img/1-small.jpg',
+                name: '邓紫棋',
+                isCheck: true,
+                isRadio: true,
+                list: [
+                    { id: 1, name: '邓紫棋', age: 19 },
+                    { id: 2, name: '宋雨琦', age: 18 },
+                    { id: 3, name: '周芷若', age: 8 }
+                ],
+                csObj: {
+                    name: '黄晓明',
+                    age: 39,
+                    gender: 'male'
+                },
+                arrObj:['pink','fz','green'],
+                activeColor:'red',
+                fontSize:20,
+                isIF:true,
+                isShow:true,
+            },
+
+            // methods对象中专门放方法的，
+            // 可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。
+            methods: {
+                getData: function (s) {
+                    console.log("gogogogo")
+                    console.log(s)
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

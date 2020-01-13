@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js文件 -->
+    <script src="../lib/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <input v-model="message" type="text"><br>
+        <h1>{{message}}</h1>
+    </div>
+
+    <!-- 下载Vue：npm i vue -->
+    <script>
+        var vm = new Vue({
+            /**
+            *   el是element的简写，用来指定vue管理页面的边界，
+            *   也就是说只有包裹在 #app内部的元素，才会收到Vue的管理！！！
+            */
+            el: '#app',
+
+            /**
+            *   页面中用的到数据都放到data对象中
+            */
+            data: {
+                message: '邓紫棋喜欢你'
+            }
+
+            // 写Vue可能会遇到的错误：
+            // 1 注意：Vue 是以大写字母开头的，它是一个构造函数！！！
+            // 2 注意：在 Vue 中，HTML属性值无法使用 {{}}！！！
+            // 3 开发期间一定要使用未压缩版的Vue（开发版）
+        })
+
+        /**
+        *   vm是Vue的对象实例，可以通过vm.$data.属性名获取data中的属性值，可以省略$data
+        */
+        console.log(vm.message)
+        console.log(vm.$data.message)
+        console.log(vm.message === vm.$data.message)
+
+    </script>
+</body>
+
+</html>

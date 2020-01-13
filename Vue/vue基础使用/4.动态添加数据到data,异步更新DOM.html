@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js文件 -->
+    <script src="../lib/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 点击按钮之前data中还没有age属性 -->
+        <button @click='addAge'>给data添加age</button>
+        <div>名字：{{stu.name}}</div>
+        <!-- 
+            这里使用的表达式中的属性必须是响应式的
+            只有data中的数据才是响应式的，动态添加进来的数据默认为非响应式 
+        -->
+        <div>年龄：{{stu.age}}</div>
+        <div>性别：{{stu.sex}}</div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello vue',
+                stu: {
+                    name: 'jack',
+                }
+            },
+            methods: {
+                addAge: function () {
+
+                    //可以通过以下方式实现动态添加数据的响应式
+
+                    //1.添加单个属性
+                    // 第一个参数：表示要给哪个对象添加响应式属性 $data可以省略
+                    // 第二个参数：表示要添加的属性名称
+                    // 第三个参数：表示属性的值
+                    Vue.set(this.stu, "age", 18)
+
+
+                    //2.添加多个属性
+                    //第一个参数：是一个空对象
+                    //第二个参数：添加到哪个对象
+                    //第三个参数：添加属性的对象
+                    this.stu = Object.assign({},this.stu,{"name":"邓紫棋","age":18,"sex":"man"})
+
+                    //此时打印的内容为 名字：jeck
+                    //
+                    //为什么呢？ Vue 异步执行 DOM 更新，监视所有数据改变，一次性更新DOM
+                    console.log(this.$el.children[1].innerText)
+
+                    //解决方法 Vue.nextTick 和 this.$nextTick 是相同的
+                    //在DOM更新后，回调执行某个操作（DOM操作
+                    this.$nextTick(function(){
+                        console.log(this.$el.children[1].innerText)
+                    })
+
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

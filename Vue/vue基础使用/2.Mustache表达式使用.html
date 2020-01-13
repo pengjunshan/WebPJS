@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <!-- 引入vue.js文件 -->
+     <script src="../lib/vue.js"></script>
+</head>
+<body>
+ <!-- 
+      双花括号{{}} 就是 mustache语法，用于展示data中的内容,mustache 中可以出现任意的 JS表达式；
+      表达式{{}}只能从数据对象data中获取数据；
+      数据对象的属性值发生了改变，插值处的内容都会更新；
+      注意：mustache中不能出现语句，比如：if () {} / for(var i =0 ...) {} / var num = 1;
+      注意：Mustache 语法不能作用在 HTML 元素的属性上；
+    -->
+    
+    <div id="app">
+            <h1>{{ msg }}</h1>
+            <p>{{ 1 + 2 }}</p>
+            <p>{{ ['a', 'c', 'b'] }}</p>
+            <p>{{ ['a', 'c', 'b'].join('-') }}</p>
+            <p>{{ msg + ' -- 拼接内容' }}</p>
+            <p>{{ age > 18 ? '成年了' : '未成年' }}</p>
+            <p>{{ Math.random() }}</p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'邓紫棋金鱼嘴',
+                age:19
+            }
+        })
+    </script>
+</body>
+</html>

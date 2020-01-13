@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap.css">
+    <link rel="stylesheet" href="../lib/layer.css">
+    <script src="../lib/jquery-1.12.4.min.js"></script>
+    <script src="../lib/vue.js"></script>
+    <script src="../lib/layer.js"></script>
+    <style>
+        .container {
+            margin-top: 50px;
+         
+        }
+
+        .table-bordered {
+            margin-top: 10px;
+        }
+
+        .btnDiv {
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app" class="container">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="">id: </label>
+                <input type="text" class="form-control" v-model='id'>
+            </div>
+
+            <div class="form-group">
+                <label for="">name: </label>
+                <input type="text" class="form-control" v-model='name'>
+            </div>
+
+            <button type="button" class="btn btn-primary active" v-on:click='add'>添加</button>
+
+            <div class="form-group">
+                <label for="">根据name过滤: </label>
+                <input type="text" class="form-control" @keyup.enter='search' v-model='searchTxt'>
+            </div>
+
+        </form>
+
+        <div class="btnDiv">
+            <button type="button" class="btn btn-primary" v-on:click='delets'>删除</button>
+            <button type="button" class="btn btn-primary" v-on:click='change'>修改</button>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" v-model='isAllCheck'></th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr v-for='item in computedList' :key='item.id'>
+                    <th><input type="checkbox" v-model='item.isCheck'></th>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.time | date('yyyy-MM-dd')}}</td>
+                    <td><a href="#" v-on:click='delet(item.id)'>删除</a></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                searchTxt: '',
+                list: [
+                    { id: 1, name: '奔驰', time: new Date(), isCheck: false },
+                    { id: 2, name: '宝马', time: new Date(), isCheck: false },
+                    { id: 3, name: '奥迪', time: new Date(), isCheck: false },
+                ],
+                list2: [
+                    { id: 1, name: '奔驰', time: new Date(), isCheck: false },
+                    { id: 2, name: '宝马', time: new Date(), isCheck: false },
+                    { id: 3, name: '奥迪', time: new Date(), isCheck: false },
+                ]
+            },
+
+            methods: {
+                add: function () {
+                    if (this.id == '') {
+                        layer.msg('请输入id');
+                        return;
+                    } else if (this.name == '') {
+                        layer.msg('请输入name');
+                        return;
+                    }
+                    this.list.push({ id: this.id, name: this.name, time: new Date() });
+                    this.list2 = this.list;
+                    this.id = '';
+                    this.name = '';
+                },
+
+                search: function () {
+
+                    //普通方法
+                    // var _this = this;
+                    // var newList = this.list2.filter(function(item){
+                    //     console.log()
+                    //     console.log(item.name.indexOf(_this.searchTxt) > -1)
+                    //         return item.name.indexOf(_this.searchTxt) > -1;
+                    //     })
+
+                    //ES6方法
+                    var newList = this.list2.filter((item) => item.name.indexOf(this.searchTxt) > -1)
+
+                    this.list = newList
+
+                },
+
+                delet: function (id) {
+                    // findIndex 用来查找数组中满足条件的项的索引号
+                    // 参数：是一个回调函数，回调函数的参数 item 表示数组中的每一项元素
+                    // 如果 回调函数的返回值为true，那么，findIndex() 就会把当前项的索引号返回
+
+                    //普通方法
+                    // var index = this.list.findIndex(function(item){
+                    //     return item.id == id;
+                    // })
+
+                    //使用ES6语法
+                    var index = this.list.findIndex(item => item.id == id);
+
+                    this.list.splice(index, 1)
+                    this.list2 = this.list;
+
+                },
+
+                //删除多个
+                delets: function () {
+                    let checkList = this.computedList.filter((item) => item.isCheck == true);
+                    let newList = this.computedList.filter((item) => item.isCheck == false);
+                    if (checkList.length > 0) {
+                        this.list = newList;
+                    } else {
+                        layer.msg("至少选择一条数据！")
+                    }
+                },
+
+                //修改信息 一次只能修改一个
+                change: function () {
+                    let checkList = this.computedList.filter((item) => item.isCheck == true);
+                    if (checkList.length == 0) {
+                        layer.msg("请选择一条数据！")
+                    } else if (checkList.length > 1) {
+                        layer.msg("只能选择一条数据！")
+                    } else {
+                        let item = checkList[0];
+                        layer.prompt({ title: '输入新名字', formType: 2 }, function (pass, index) {
+                            item.name = pass;
+                            layer.close(index);
+                        });
+                    }
+                }
+            },
+
+            /**
+           *   过滤时间
+           */
+            filters: {
+                date: function (date, fm = 'yyyy-MM-dd hh:mm:ss') {
+                    return date.getFullYear() + '-' + date.getMonth() + 1 + '-' + date.getDate() + ' ' +
+                        date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+                }
+            },
+
+            /**
+            *   计算属性 当被依赖的属性发生改变时就会触发
+            */
+            computed: {
+                computedList: function () {
+                    return this.list.filter(item => item.name.indexOf(this.searchTxt) > -1);
+                },
+
+                isAllCheck: {
+                    get() {
+                        let bl = this.computedList.every(item => {
+                            return item.isCheck;
+                        });
+                        return bl;
+                    },
+                    set(newVal) {
+                        // 利用表头的全选单选框控制分表里每一个信息的选择状态，所以遍历每一项统一kongzhi
+                        this.computedList.forEach(item => item.isCheck = newVal);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

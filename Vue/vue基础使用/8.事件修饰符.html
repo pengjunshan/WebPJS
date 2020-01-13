@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+
+    <style>
+        body{
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <!-- .stop 阻止向上冒泡 不会调用父的事件 -->
+        <div @click='cathFather'>我是父事件修饰符
+            <!-- .stop  阻止冒泡，调用 event.stopPropagation() -->
+            <div @click.stop='catchSon'>我是子事件修饰符</div>
+        </div>
+
+        <!-- .prevent 阻止默认行为，调用 event.preventDefault() -->
+        <a href="http://www.baidu" @click.prevent='onPrevent'>我是prevent事件</a>
+
+        <!-- .capture捕获冒泡，
+            即有冒泡发生时，有该修饰符的dom元素会先执行，如果有多个，从外到内依次执行，然后再按自然顺序执行触发的事件。
+        -->
+        <!-- 如果不给爷爷添加capture 点击儿子触发的顺序是 儿子、爸爸、爷爷 -->
+        <!-- 给爷爷添加了capture事件后 点击儿子触发的顺序是 爷爷、儿子、爸爸 -->
+        <div @click.capture='grandpa'>我是爷爷
+            <div @click='father'>我是爸爸
+                <div @click='son'>
+                        我是儿子
+                </div>
+            </div>
+        </div>
+
+        <!-- .self 只当事件在该元素本身触发时，才会触发事件 -->
+        <div @click.self='onSelfFather'>self事件爸爸
+            <div @click='onSelfSon'>self事件儿子</div>
+        </div>
+
+        <!-- .once  事件只触发一次 -->
+        <div @click.once='onOnce'>再点我一次试试</div>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+                // 父点击事件
+                cathFather:function(){
+                    console.log('父点击事件')
+                },
+                // 子点击事件
+                catchSon:function(){
+                    console.log('子点击事件')
+                },
+
+                // .prevent
+                onPrevent:function(){
+                    console.log('阻止了默认行为')
+                },
+
+                // capture事件
+                grandpa:function(){
+                    console.log('我是爷爷')
+                },
+                father:function(){
+                    console.log('我是爸爸')
+                },
+                son:function(){
+                    console.log('我是儿子')
+                },
+
+                // .self事件
+                onSelfFather:function(){
+                    console.log('我是爸爸')
+                },
+                onSelfSon:function(){
+                    console.log('我是儿子')
+                },
+
+                // once事件
+                onOnce:function(){
+                    console.log('我是once事件')
+                },
+
+                onScroll:function(){
+                    console.log('onScroll')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

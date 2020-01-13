@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+        <button @click='change'>改变数据</button>
+    </div> 
+
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'默认值'
+            },
+            methods:{
+                change:function(){
+                    this.msg = '改变后的值'
+                }
+            },
+            // 在实例初始化之后，在这个钩子函数中，无法获取到data中的数据
+            // 使用场景：可以在这个钩子函数中开启页面加载的 loading 效果
+            beforeCreate:function(){
+                console.log('beforeCreate')
+                console.log(this.msg)//undefind
+            },
+
+            // 可以调用methods中的方法、改变data中的数据
+            // 使用场景：发送请求获取数据
+            created:function(){
+                console.log('created')
+                console.log(this.msg)
+            },
+
+            // 组件将要挂载到页面中，也就是说：组件的内容还没有被挂载到页面中
+            // 此时，获取不到页面中DOM元素
+            beforeMounted:function(){
+                console.log('beforeMounted')
+                console.log(this.$el)
+            },
+
+            // 组件已经被挂载到页面中，此时，可以进行DOM操作了
+            mounted:function(){
+                console.log("mounted")
+                console.log(this.$el)
+            },
+
+            // 数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前。你可以在这个钩子中进一步地更改状态，这不会触发附加的重渲染过程。
+            beforeUpdate:function(){
+                console.log('beforeUpdated')
+                console.log(this.$el.children[0])
+            },
+
+            // 组件 DOM 已经更新完成，所以你现在可以执行依赖于 DOM 的操作。
+            updated:function(){
+                console.log('updated')
+                console.log( this.msg)
+            },
+
+            // 实例销毁之前调用。在这一步，实例仍然完全可用。
+            // 使用场景：实例销毁之前，执行清理任务，比如：清除定时器等
+            beforeDestroy:function(){
+                console.log('beforeDestroy')
+            },
+
+            // Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。
+            destroyed:function(){
+                console.log('destroyed')
+            }
+
+        })
+    </script>
+    
+</body>
+</html>
