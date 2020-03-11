@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to='/home'>首页</router-link>
+        <router-link to='/user'>我的</router-link>
+        <router-view></router-view>
+    </div>
+
+    <script>
+
+        //路由是可以嵌套的，即：路由中又包含子路由
+        //规则：父组件中包含 router-view，在路由规则中使用 children 配置
+        const Home = Vue.component('home', {
+            template: `
+                <div>
+                    <router-link to='/home/cartA'>买车</router-link>
+                    <router-link to='/home/cartB'>卖车</router-link>
+                    <router-view></router-view>
+                </div>
+            `
+        })
+        const CartA = {
+            template: `<h3>买什么样的车？</h3>`
+        }
+        const CartB = {
+            template: `<h3>卖什么样的车？</h3>`
+        }
+        const User = Vue.component('user', {
+            template: `
+                <div>
+                    这里是个人信息
+                </div>
+            `
+        })
+        const router = new VueRouter({
+            routes: [
+                {
+                    path: '/home', component: Home,
+                    //使用children里配置子路由，子路由的path里不需要加/符号了
+                    children: [
+                        {
+                            path: 'cartA',
+                            component: CartA
+                        },
+                        {
+                            path:'cartB',
+                            component:CartB
+                        }
+                    ]
+                },
+                { path: '/user', component: User }
+            ]
+        })
+        var vm = new Vue({
+            el: '#app',
+            router
+        })
+    </script>
+</body>
+
+</html>

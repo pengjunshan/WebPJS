@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="./node_modules/vuex/dist/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <AAA></AAA>
+        <BBB></BBB>
+    </div>
+    <script>
+        /**
+        *  anction--异步更改状态
+        *  mutation中规则上是不允许异步操作的,于是vuex为我们提供了action。
+        *  store.dispatch() 方法触发
+        */
+        let store = new Vuex.Store({
+            state: {
+                name: '邓紫棋'
+            },
+
+            /**
+            *   mutations只能同步执行
+            */
+            mutations: {
+                //接收参数对象
+                changeName(state, payload) {
+                    state.name = payload.name ? payload.name : '张韶涵';
+                    state.sex = payload.sex//给state新增一个属性
+                }
+            },
+            /**
+            *   anctions对象中自定义方法来操作mutations,并且每个方法会接受 context 作为第一个参数;
+            *   context对象与store对象具有相同的方法和属性
+            *   action 与 mutation 除了使用了异步操作和调用mutation，其它使用并无差别 
+            */
+            actions: {
+                //接收数据
+                changeNameAsync(context, payload) {
+                    //异步操作
+                    setTimeout(() => {
+                        context.commit('changeName',payload)
+                    }, 1000)
+                }
+            }
+        })
+
+        //创建两个组件
+        const AAA = Vue.component('aaa', {
+            template: `
+                <div>
+                    <!-- 4.使用$store.state中的数据 -->
+                    <h1>{{this.$store.state.name}}</h1>
+                    <h2>{{this.$store.state.sex}}</h2>
+                </div>
+            `
+        })
+        const BBB = Vue.component('bbb', {
+            template: `
+                <div>
+                    <input type="text" placeholder="请输入姓名" v-model='msg'>
+                    <input type="button" value="确定" @click='change'>
+                </div>
+            `,
+            data() {
+                return {
+                    msg: ''
+                }
+            },
+            methods: {
+                change() {
+                    //action事件的触发同样可以使用载荷和对象两种方式,其它方式就不写了和mutations方式一样
+                    this.$store.dispatch({
+                        type:'changeNameAsync',//Store.anctions中的方法名
+                        name: this.msg,
+                        sex: '男'
+                    })
+                }
+            }
+        })
+        let vm = new Vue({
+            el: '#app',
+            store
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="./node_modules/vuex/dist/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <AAA></AAA>
+        <BBB></BBB>
+    </div>
+    <script>
+        let store = new Vuex.Store({
+            state: {
+                name: '邓紫棋'
+            },
+            mutations: {
+                //接收参数对象
+                changeName(state, payload) {
+                    state.name = payload.name ? payload.name : '张韶涵';
+                }
+            },
+            /**
+            *   getters类似Vue实例中的计算属性，当绑定的属性发生变化后才会重新计算
+            *   每个方法都默认接收state参数
+            */
+            getters:{
+                getName(state){
+                    let myName='';
+                    if(state.name === '彭俊山'){
+                        myName = '你是最帅的！'
+                    }
+                    return state.name + myName;
+                }
+            }
+        })
+
+        //创建两个组件
+        const AAA = Vue.component('aaa', {
+            template: `
+                <div>
+                    <!-- 使用$store.state中的数据 -->
+                    <h1>{{this.$store.state.name}}</h1>
+                    <!-- 使用$store.getters中的属性 -->
+                    <h2>{{this.$store.getters.getName}}</h2>
+                </div>
+            `
+        })
+        const BBB = Vue.component('bbb', {
+            template: `
+                <div>
+                    <input type="text" placeholder="请输入姓名" v-model='msg'>
+                    <input type="button" value="确定" @click='change'>
+                </div>
+            `,
+            data() {
+                return {
+                    msg: ''
+                }
+            },
+            methods: {
+                change() {
+                    //纯对象风格提交 type值是方法名
+                    this.$store.commit({
+                        type: 'changeName',
+                        name: this.msg
+                    })
+                }
+            }
+        })
+        let vm = new Vue({
+            el: '#app',
+            store
+        })
+    </script>
+</body>
+
+</html>

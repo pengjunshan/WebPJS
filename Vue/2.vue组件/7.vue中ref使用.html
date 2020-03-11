@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 使用ref注册后  可以使用this.$refs.pp获取当前DOM对象 -->
+        <p ref='pp'>哈喽，大家好</p>
+
+        <!-- 组件也可以 -->
+        <hello ref="ho"></hello>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            components: {
+                hello: {
+                    template: `<h1>大家好</h1>`,
+                    data() {
+                        return {
+                            msg: 'hello message'
+                        }
+                    },
+                    methods: {
+                        fn() {
+                            console.log("触发了事件11111")
+                        }
+                    }
+                }
+            },
+            mounted() {
+                console.log(this.$refs.pp)
+                this.$refs.pp.style.color = 'red';
+
+                console.log(this.$refs.ho.msg)
+                this.$refs.ho.fn()
+            }
+        })
+    </script>
+</body>
+
+</html>

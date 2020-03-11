@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。
+
+        /**
+        * 数组解构
+        */
+        let arr = [1,2,3];
+        let [a,b,c] = arr;
+        console.log(""+a+b+c)
+
+        /**
+        * 对象解构
+        **/
+        let obj = {name:'邓紫棋',sex:'女'}
+        //赋给对应的字段名
+        let {name,sex} = obj
+        console.log(name+sex)
+        //赋给对应字段的变量,如果发现对应的字段名已经存在了可以用这种方式解构
+        let {name:x,sex:y} = obj
+        console.log(x+y)
+
+        /**
+        * 在函数参数中使用解构
+        */
+        let fn =function({name,sex}){
+            console.log(name+sex)
+        }
+        //箭头函数+对象解构
+        let fn1 = ({name,sex})=> console.log(name+sex+'fn1')
+        fn(obj)
+        fn1(obj)
+
+    </script>
+</body>
+</html>

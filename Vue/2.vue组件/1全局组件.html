@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <hello></hello>
+    </div>
+
+    <template id="temp">
+        <div>
+            <p>我是组件：{{msg}}</p>
+            <button @click='fn'> 点击消灭新冠 </button>
+        </div>
+    </template>
+    <script>
+        //全局组件 全局组件在所有的vue实例中都可以使用
+        //注意：先注册组件，再初始化根实例
+
+        /**
+        * 因为组件是可复用的 Vue 实例，所以它们与 new Vue 接收相同的选项，
+        * 例如 data、computed、watch、methods 以及生命周期钩子等,
+        * el 是跟实例特有的属性，组件中没有
+        */
+
+        /**
+        * 第一个参数是组件名
+        * 第二个参数是配置项，与Vue实例的配置几乎一样
+        */
+        Vue.component('hello', {
+            //template是组件的模板 也就是要展示的内容
+            //组件中template模板有两种方式，“字符串” “html模板”
+            //方式一：字符串
+            // template: `
+            //     <div>
+            //         <p>我是组件：{{msg}}</p>
+            //         <button @click='fn'> 点击消灭新冠 </button>
+            //     </div>
+            // `,
+            //方式二：html模板
+            template: '#temp',
+
+            //组件中的data必须是个函数数据用return返回，Vue跟实例中的data是个对象
+            data() {
+                return {
+                    msg: '武汉加油 中国加油'
+                }
+            },
+            methods: {
+                fn() {
+                    this.msg = '新冠被消灭了，中国威武'
+                }
+            }
+
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {}
+        })
+
+    </script>
+
+</body>
+
+</html>

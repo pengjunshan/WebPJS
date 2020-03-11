@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 6.路由入口 -->
+        <router-link to='/home'>首页</router-link>
+        <router-link to='/me'>我的</router-link>
+        <!-- 7.路由出口 -->
+        <router-view></router-view>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+    <script>
+        //首先先安装vue和vue-router
+        //1.在当前文件夹下执行npm init、npm init -y初始化package.json
+        //2.然后执行npm i -s vue、npm i -s vue-router安装vue和vue-router
+        //3.在node_modules下找到vue和vue-router中的js并引入到项目中
+        //4.先创建两个组件
+        const Home = Vue.component('home', {
+            template: `<h1>我是Home组件</h1>`
+        })
+        const Me = Vue.component('me', {
+            template: `<h1>我是Me组件</h1>`
+        })
+
+        //5.创建路由对象
+        const router = new VueRouter({
+            routes: [
+                { path: '/home', component: Home },
+                { path: '/me', component: Me }
+            ]
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            //将vue和router
+            router: router
+        })
+
+    </script>
+</body>
+
+</html>

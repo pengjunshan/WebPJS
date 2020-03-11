@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+        * map()方法,map常用在修改item中属性的值，不会改变数组的长度。
+        */
+        //值类型数组
+        let arrNum = [1, 2, 3, 4, 5, 6]
+        //对象类型数组
+        let arrObj = [
+            { id: 1, name: '邓紫棋', age: 18 },
+            { id: 2, name: '高圆圆', age: 19 },
+            { id: 3, name: '周芷若', age: 16 },
+        ]
+
+        //如果数组是值类型的，不会改变老的数组中的值
+        let mapArrNum = arrNum.map((item) => {
+            return item * 2
+        })
+        console.log('arrNum老的数组', arrNum)
+        console.log('mapArrNum新的数组', mapArrNum)
+
+        //如果数组的类型是对象，会改变老的数组中的值
+        //item:当前元素； index:当前元素的下标；arr:当前操作的数组
+        // let mapArrObj = arrObj.map((item,index,arr)=>{
+        let mapArrObj = arrObj.map((item) => {
+            if (item.id === 3) {
+                item.age = 20
+            }
+            return item;
+        })
+        console.log('arrObj老的数组', arrObj)
+        console.log('mapArrObj新的数组', mapArrObj)
+
+        /**
+        * filter()方法，用来过滤数组，返回一个新的数组，
+        * filter方法需要在循环的时候判断一下是true还是false，是true才会返回这个元素然后加入到新的数组中；
+        * item:当前元素； index:当前元素的下标；arr:当前操作的数组
+        */
+        let filterArrObj = [
+            { id: 1, name: '邓紫棋', age: 18 },
+            { id: 2, name: '高圆圆', age: 19 },
+            { id: 3, name: '周芷若', age: 16 },
+        ]
+        let filterArr = filterArrObj.filter((item, index, arr) => {
+            return item.age >= 18;
+        })
+        console.log('age大于等于18的人', filterArr)
+
+        /**
+        * forEach()方法，没有返回值，map()、filter()都会返回一个新数组
+        * forEach遍历方式遍历数组全部元素，利用回调函数对数组进行操作，自动遍历数组.length次
+        * 且无法break中途跳出循环，不可控、不支持return操作输出，return只用于控制循环是否跳出当前循环
+        */
+        let eachArrObj = [
+            { id: 1, name: '邓紫棋', age: 18 },
+            { id: 2, name: '高圆圆', age: 19 },
+            { id: 3, name: '周芷若', age: 16 },
+        ]
+        eachArrObj.forEach((item,index,arr)=>{
+            item.age>18? item.age=18:item.age=item.age
+        })
+        console.log('forEach遍历后：',eachArrObj)
+
+        /**
+        * every()方法，循环遍历数组，返回一个布尔值；
+        * 对数组中的每一项运行给定函数，如果该函数对每一项返回true,则最后返回true。否则返回false；
+        */
+        let arrObjTow = [
+            { id: 1, name: '邓紫棋', age: 18 },
+            { id: 2, name: '高圆圆', age: 19 },
+            { id: 3, name: '周芷若', age: 16 },
+        ]
+        let isEvery = arrObjTow.every((item,index,arr)=>{
+            return item.age>18
+        })
+        console.log('every，age是否全部大于18:',isEvery)
+
+        /**
+        * some()方法，循环遍历数组，返回一个布尔值；
+        * 对数组中的每一项运行给定函数，如果该函数中任一项返回true，则最后返回true；
+        */
+        let isSome = arrObjTow.some((item,index,arr)=>{
+            return item.age>18
+        })
+        console.log('some(),age有大于18的吗:',isSome)
+
+        /**
+        * for…in;是用于遍历包含键值对(key-value)的对象，对数组并不是那么友好。
+        * 通过arr[key]获取当前元素,key：下标
+        */
+        for(let key in arrObjTow){
+            console.log('for...in:',arrObjTow[key])
+        }
+
+        /**
+        * for...of;是ES6定义的新的遍历数组的方法,直接获取值
+        */
+        for(let val of arrObjTow){ 
+            console.log('for...of：',val)
+        }
+
+    </script>
+</body>
+
+</html>

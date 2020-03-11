@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="./node_modules/vuex/dist/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 4.使用$store.state中的数据 -->
+        <h1>{{this.$store.state.name}}</h1>
+    </div>
+    <script>
+        /**
+       * Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。
+       * 它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+       * 意思就是所有组件共同操作一份数据，都可以对它进行增删改查。
+       */
+        //1.安装vuex npm i -s vuex
+        //2.创建store对象
+        let store = new Vuex.Store({
+            /**
+            *   state中可以存储任何类型的值
+            */
+            state: {
+                name: '邓紫棋'
+            }
+        })
+        let vm = new Vue({
+            el: '#app',
+            data: {},
+            //3.把vue和store进行关联
+            store,
+            mounted() {
+                //可以获取store对象
+                console.log(this.$store)
+            }
+        })
+    </script>
+</body>
+
+</html>

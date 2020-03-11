@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 通过to字符串 -->
+        <router-link to="/home/1001">1001号赛车</router-link>
+        <router-link to="/home/1002">1002号赛车</router-link>
+        <!-- 通过$router.push{} -->
+        <a @click='fn'>1003号赛车</a>
+        <a @click='fn1'>1004号赛车</a>
+        <!-- 通过:to对象 -->
+        <router-link :to="{ name:'Home',params:{id:1005,title:'pjs'}}">1005</router-link>
+        <router-link :to="{ path:'/home',query:{id:1006,title:'pjs'}}">1006</router-link>
+
+        <router-view></router-view>
+    </div>
+
+    <script>
+        //导航分为两种：1.声明式导航(router-link)  2.编程式导航($router.push)
+        //1.通过to字符串
+        //2.$router.push{}
+        //3.通过:to对象
+
+        //通过name跳转的状态栏里看不到参数类似post，通过path跳转的状态栏里可以看到参数类似get
+        //通过$route.params或$route.query来获取参数
+        const Home = Vue.component('home', {
+            template: `
+                <div>
+                    <h1 v-if='$route.params.id'>欢迎来到主页面{{ $route.params.id}}</h1>
+                    <h1 v-if='$route.query.id'>欢迎来到主页面{{ $route.query.id}}</h1>
+                </div>
+            `,
+            //监听路由变化，获取参数进行操作
+            watch: {
+                 //只要路由发生的变化就会执行这个方法，to 跳转的目的地， from 从哪里来
+                $route(to, from) {
+                    //在这里可进行监听数据变化 进行网络请求
+                    console.log(to)
+                    console.log(from)
+                    console.log(to.params.id)
+                    console.log(to.query.id)
+                }
+            }
+        })
+
+        const router = new VueRouter({
+            routes: [
+                { path: '/home/:id', component: Home },
+                { path: '/home', name: 'Home', component: Home }
+            ]
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            router,
+            methods: {
+                fn() {
+                    this.$router.push({
+                        name: 'Home',//找到routes里匹配到name为Home
+                        params: {
+                            id: 1003,
+                            title: 'pjs'
+                        }
+                    })
+                },
+                fn1() {
+                    this.$router.push({
+                        path: '/home',
+                        query: {
+                            id: 1004,
+                            title: 'pjs'
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

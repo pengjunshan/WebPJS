@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="./node_modules/vuex/dist/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 组件AAA和组件BBB共同操作$store.state中的数据 -->
+        <!-- 比我们之前学的组件之间通讯更加方便 -->
+        <AAA></AAA>
+        <BBB></BBB>
+    </div>
+    <script>
+        /**
+        *  mutation是更改store中状态的唯一方法
+        *  vuex中规定只能通过提交mutation的方式去更改store中的状态
+        *  store.commit()更改数据
+        */
+        let store = new Vuex.Store({
+            state: {
+                name: '邓紫棋'
+            },
+
+            /**
+            *   mutations对象中自定义方法来操作state中的数据
+            *   并且每个方法会接受 state 作为第一个参数
+            *   注意：Store对象中写mutations；Mutation 必须是同步函数
+            */
+            mutations: {
+                //不接收参数
+                changeName(state) {
+                    state.name = '张韶涵'
+                },
+                //只接收一个参数
+                changeName(state, name) {
+                    state.name = name ? name : '张韶涵';
+                },
+                //接收参数对象
+                changeName(state, payload) {
+                    state.name = payload.name ? payload.name : '张韶涵';
+                    state.sex = payload.sex//给state新增一个属性
+                }
+            }
+        })
+
+        //创建两个组件
+        const AAA = Vue.component('aaa', {
+            template: `
+                <div>
+                    <!-- 4.使用$store.state中的数据 -->
+                    <h1>{{this.$store.state.name}}</h1>
+                    <h2>{{this.$store.state.sex}}</h2>
+                </div>
+            `
+        })
+        const BBB = Vue.component('bbb', {
+            template: `
+                <div>
+                    <input type="text" placeholder="请输入姓名" v-model='msg'>
+                    <input type="button" value="确定" @click='change'>
+                </div>
+            `,
+            data() {
+                return {
+                    msg: ''
+                }
+            },
+            methods: {
+                change() {
+                    //1.无参数
+                    // this.$store.commit('changeName')
+
+                    //2.载荷提交，只能提交一个参数
+                    // this.$store.commit('changeName',this.msg)
+
+                    //3.载荷对象提交
+                    // this.$store.commit('changeName',{
+                    //     name:this.msg
+                    // })
+
+                    //4.纯对象风格提交 type值是方法名
+                    this.$store.commit({
+                        type: 'changeName',
+                        name: this.msg,
+                        sex: '男'
+                    })
+                }
+            }
+        })
+        let vm = new Vue({
+            el: '#app',
+            //把vue和store进行关联
+            store
+        })
+    </script>
+</body>
+
+</html>

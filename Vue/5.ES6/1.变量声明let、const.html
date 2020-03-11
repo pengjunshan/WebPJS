@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+        * ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。
+        * let特点：1.块级作用域；2.先声明再使用；3.在同作用域中不能重复声明
+        * 声明了但没有赋值，值是undefined
+        */
+        let num = 2;
+        let mm;//undefined
+        {
+            let num = 3;
+            // let num = 4;//再次声明会报错，提示已经声明过num了
+            console.log(num)
+        }
+        console.log(num)
+
+        for (var i = 0; i < 10; i++) {
+        }
+        //i被变量提升了成为了全局变量
+        console.log(i)
+
+
+        for (let j = 0; j < 10; j++) {
+        }
+        // console.log(j)//报错找不到j,因为j是局部变量出了for循环就找不到j了
+
+
+        /**
+        * const声明一个只读的常量。一旦声明，常量的值就不能改变。
+        * const的作用域与let命令相同：只在声明所在的块级作用域内有效
+        * 声明必须赋值，否则报错
+        */
+        const name = '邓紫棋'
+        // const sex;//报错，提示常量声明缺少初始值
+        console.log(name)
+        // name = '张韶涵'//报错，常量不能改值
+
+        //可以改变对象中的属性的值
+        const user = {name:'张萌萌'}
+        user.name = '关晓彤'
+        console.log(user.name)
+
+    </script>
+</body>
+
+</html>

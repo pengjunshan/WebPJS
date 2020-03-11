@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+        * 经常遇到key:value形式，把key和value命名都一样的话可以省略:value
+        */
+        //键值对重名
+        let fn = function (name, age) {
+            return {
+                name: name,
+                age: age
+            }
+        }
+        //简化 键值命名一样
+        let fn1 = function (name, age) {
+            return {
+                name,
+                age
+            }
+        }
+
+        /**
+        * ES6 同样改进了为对象字面量方法赋值的语法,
+        */
+        let obj = {
+            fn: function () {
+                console.log(111111)
+            }
+        }
+
+        //省略function关键字
+        let obj1 = {
+            fn() {
+                console.log(222222)
+            },
+        }
+
+        obj.fn();
+        obj1.fn();
+
+
+// Object.keys(obj)：获取对象的所有key形成的数组
+// Object.values(obj)：获取对象的所有value形成的数组
+// Object.entries(obj)：获取对象的所有key和value形成的二维数组。格式：[[k1,v1],[k2,v2],…]
+// Object.assign(dest, …src) ：将多个src对象的值 拷贝到 dest中（浅拷贝）。
+
+    </script>
+</body>
+
+</html>

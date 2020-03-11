@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <hello @pfn='parentFn'></hello>
+    </div>
+    <template id="temp">
+        <div>
+            <p>我是组件：{{msg}}</p>
+            <button @click='sonFn'> 点击消灭新冠 </button>
+        </div>
+    </template>
+    <script>
+        //组件传递 子》父
+        //1.由父组件定义一个方法，通过@pfn传给子组件
+        //2.子组件通过$emit方法把数据传递给父组件定义的方法
+
+        Vue.component('hello', {
+            template: '#temp',
+            data() {
+                return {
+                    msg: '武汉加油 中国加油'
+                }
+            },
+            methods: {
+                sonFn() {
+                    //通过$emit方法传递数据给父组件的方法，参数可以为多个
+                    this.$emit('pfn', '新冠被消灭了，中国威武', '测试')
+                }
+            }
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '标题'
+            },
+            methods: {
+                parentFn(data, data2) {
+                    this.msg = data;
+                    console.log(data2)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

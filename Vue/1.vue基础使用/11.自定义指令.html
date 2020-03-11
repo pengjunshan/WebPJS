@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/jquery-1.12.4.min.js"></script>
+    <script src="../lib/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- Vue这种MVVM模式的框架不推荐开发人员直接手动操作DOM
+         有些情况, 还是需要操作DOM的, 如果需要操作DOM, 就通过 Vue中的自定义指令来操作!!! -->
+    <div id="app">
+        <div v-ff2>{{msg}}</div>
+
+        <!-- 指令函数的入参 -->
+        <!-- 标识放到自定义指令的后面 .表示名 -->
+        <!-- 注意：如果 v-color="red" 那么，red指的值：data中的red属性 -->
+        <div v-color.back=" 'blue' ">{{ msg }}</div>
+        <div v-color.col=" 'red' ">{{ msg }}</div>
+    </div>
+
+    <script>
+
+        //自定义指令
+        // 第一个参数: 表示自定义指令的名称
+        // 第二个参数: 表示自定义指令运行的时候, 需要执行的逻辑操作
+        // 第二个参数：还可以是一个对象，对象中是指令的钩子函数
+
+        //第二个参数 1.表示自定义指令运行的时候, 需要执行的逻辑操作
+        Vue.directive('ff1', function (el) {
+            console.log(el)
+        })
+
+        //第二个参数 2.还可以是一个对象，对象中是指令的钩子函数
+        Vue.directive('ff2', {
+
+            // bind 和 inserted 这两个钩子函数， 都是进入页面就立即执行的
+            // 区别：inserted 能获取到指令所在元素的父元素，bind 获取不到父元素
+            bind(el) {
+                console.log('bind', el.parentNode)
+            },
+            inserted(el) {
+                console.log('inserted', el.parentNode)
+            },
+            // DOM重新渲染前
+            update(el) {
+                console.log('update:', el.innerHTML);
+            },
+
+            // DOM重新渲染后
+            componentUpdated(el) {
+                console.log('componentUpdated: ', el.innerHTML);
+            },
+
+            // 如果指令所在的元素, 从页面中消失(移除), 那么就会执行 unbind 钩子函数
+            unbind() {
+                console.log('unbind');
+            }
+        })
+
+        Vue.directive('color', function (el, binding) {
+            if (binding.modifiers.col) {
+                el.style.color = binding.value
+            } else {
+                el.style.backgroundColor = binding.value
+            }
+        })
+
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '华为P30'
+            }
+        })
+    </script>
+</body>
+
+</html>

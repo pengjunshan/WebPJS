@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //ES6为参数提供了默认值。在定义函数时便初始化了这个参数，以便在参数没有被传递进去时使用。
+
+        //如果传参了就是传参的值，如果没有传参默认为6
+        let fn = function(num=6){
+            console.log(num)
+        }
+        fn();//没有传值默认6
+        fn(8);//传了值8 num值就是8
+
+        
+    </script>
+</body>
+</html>

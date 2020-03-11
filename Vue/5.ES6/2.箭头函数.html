@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //箭头函数里没有this，如果要用this就是父级的this 如果父级也没有this 那么就继续往上找 直到找到window
+        //无法使用arguments，没有arguments对象
+        //不需要 function 关键字来创建函数
+        //不要在Vue的选项属性或回调上使用箭头函数
+        //相当于java中的lamda表达式
+
+        //使用一:没有入参，函数内就一行
+        let aa1 = function(){
+            return 1;
+        }
+        //转箭头函数，可以省略return和{}
+        let aa2 = ()=> 1;
+
+        //使用二：有入参，函数内就一行
+        let bb1 = function(num){
+            return num+1;
+        }
+        //转箭头函数，可以省略return和{}
+        let bb2 = num=> num+1;
+
+        //使用三：有多个入参，函数内有多行
+        let cc1 = function(pp,jj){
+            pp = pp+'你好';
+            return jj+'你好'
+        }
+        //转箭头函数，多个参数时用()包含着，
+        let cc2 = (pp,jj)=>{
+            pp = pp+'你好';
+            return jj+'你好'
+        }
+        console.log(cc2('aa','邓紫棋'));//邓紫棋你好
+    </script>
+</body>
+</html>

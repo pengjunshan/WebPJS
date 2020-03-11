@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * ES6中另外一个好玩的特性就是Spread Operator 也是三个点儿...
+        * 它可以是数组也可以是对象
+        */
+
+        //数组，在一个数组中添加元素返回一个新数组，不会除重
+        let arr = [1,2,3,4,5]
+        let arr1 = [...arr,6,7,8,9,5]
+        console.log(arr1)
+
+        //对象,在老对象中新增属性返回一个新的对象
+        let obj = {
+            name:'邓紫棋',
+            age:18
+        }
+        let obj1 = {...obj,sex:'女'}
+        console.log(obj1)
+
+        //两个数组合并不会除重
+        let arr2 = [1,2,3,4,5]
+        let arr3 = [1,2,3,4,5]
+        console.log([...arr2,...arr3])
+
+        //两个对象合并,后面对象会覆盖前面重复的属性
+        let obj2 = {
+            name:'邓紫棋',
+            age:18
+        }
+        let obj3 = {
+            name:'邓紫棋',
+            age:19,
+            sex:'女'
+        }
+        let obj4= {...obj2,...obj3}
+        console.log(obj4)
+
+        //函数中使用
+        let fn = function(...n){
+            console.log(n)
+        }
+        fn(1,2,3)
+
+    </script>
+</body>
+</html>
