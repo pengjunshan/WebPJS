@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * for...in;循环遍历对象自身的和继承的可枚举属性
+        * 通过obj[key]获取值，key：属性名称
+        */
+        let obj = {id: 1, name: '邓紫棋', age: 18}
+        for(let key in obj){
+            console.log(key+'--'+obj[key])//id--1  name--邓紫棋  age--18
+        }
+
+        /**
+        *  Object.keys(obj);获取对象中的key,组成一个数组
+        */
+        Object.keys(obj).forEach(key=>console.log(key+'--'+obj[key]))
+
+    </script>
+</body>
+</html>

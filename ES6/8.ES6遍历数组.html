@@ -22,23 +22,23 @@
         ]
 
         //如果数组是值类型的，不会改变老的数组中的值
-        let mapArrNum = arrNum.map((item) => {
+        let mapArrNum = arrNum.map((item,index,arr) => {
             return item * 2
         })
-        console.log('arrNum老的数组', arrNum)
-        console.log('mapArrNum新的数组', mapArrNum)
+        console.log('arrNum老的数组', arrNum)//[1, 2, 3, 4, 5, 6]
+        console.log('mapArrNum新的数组', mapArrNum)//[2, 4, 6, 8, 10, 12]
 
         //如果数组的类型是对象，会改变老的数组中的值
         //item:当前元素； index:当前元素的下标；arr:当前操作的数组
         // let mapArrObj = arrObj.map((item,index,arr)=>{
-        let mapArrObj = arrObj.map((item) => {
+        let mapArrObj = arrObj.map((item,index,arr) => {
             if (item.id === 3) {
                 item.age = 20
             }
             return item;
         })
-        console.log('arrObj老的数组', arrObj)
-        console.log('mapArrObj新的数组', mapArrObj)
+        console.log('arrObj老的数组', arrObj)//{ id: 3, name: '周芷若', age: 20 }
+        console.log('mapArrObj新的数组', mapArrObj)//{ id: 3, name: '周芷若', age: 20 }
 
         /**
         * filter()方法，用来过滤数组，返回一个新的数组，
@@ -53,7 +53,7 @@
         let filterArr = filterArrObj.filter((item, index, arr) => {
             return item.age >= 18;
         })
-        console.log('age大于等于18的人', filterArr)
+        console.log('age大于等于18的人', filterArr)//{id:1...}{id:2...}
 
         /**
         * forEach()方法，没有返回值，map()、filter()都会返回一个新数组
@@ -68,7 +68,7 @@
         eachArrObj.forEach((item,index,arr)=>{
             item.age>18? item.age=18:item.age=item.age
         })
-        console.log('forEach遍历后：',eachArrObj)
+        console.log('forEach遍历后：',eachArrObj)//{id:1,age:18}{id:2,age:18}{id:3,age:16}
 
         /**
         * every()方法，循环遍历数组，返回一个布尔值；
@@ -82,7 +82,7 @@
         let isEvery = arrObjTow.every((item,index,arr)=>{
             return item.age>18
         })
-        console.log('every，age是否全部大于18:',isEvery)
+        console.log('every，age是否全部大于18:',isEvery)//false
 
         /**
         * some()方法，循环遍历数组，返回一个布尔值；
@@ -91,14 +91,14 @@
         let isSome = arrObjTow.some((item,index,arr)=>{
             return item.age>18
         })
-        console.log('some(),age有大于18的吗:',isSome)
+        console.log('some(),age有大于18的吗:',isSome)//true
 
         /**
         * for…in;是用于遍历包含键值对(key-value)的对象，对数组并不是那么友好。
         * 通过arr[key]获取当前元素,key：下标
         */
         for(let key in arrObjTow){
-            console.log('for...in:',arrObjTow[key])
+            console.log('for...in:',arrObjTow[key])//{id:*,name:*,age:*}
         }
 
         /**

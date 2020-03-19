@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="show">等待消息</div><br>
+    <input type="text" id="text1" placeholder="请输入姓名"/><br>
+    <input type="number" id="text2" placeholder="请输入年龄"/><br>
+    <input type="button" id="enter" value="默认发送消息" onclick="testClick();"/><br>
+    <input type="button" id="enter1" value="指定方法名发送消息" onclick="testClick1();"/><br>
+</body>
+<script>
+
+        //默认发送数据
+        function testClick() {
+            var str1 = document.getElementById("text1").value;
+            var str2 = document.getElementById("text2").value;
+            var data = {id: 1, content: "我是默认发送消息",name:str1,age:str2};
+            window.WebViewJavascriptBridge.send(
+                data
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = "接收Android默认的回调信息：= " + responseData
+                }
+            );
+
+        }
+
+        //指定方法发送数据
+        function testClick1() {
+            var str1 = document.getElementById("text1").value;
+            var str2 = document.getElementById("text2").value;
+
+            window.WebViewJavascriptBridge.callHandler(
+                'JSToAndroid'
+                , {name:str1,age:str2}
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = "接收Android指定的回调信息：= " + responseData
+                }
+            );
+        }
+
+        //初始化Bridge
+        function connectWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge)
+            } else {
+                document.addEventListener(
+                    'WebViewJavascriptBridgeReady'
+                    , function() {
+                        callback(WebViewJavascriptBridge)
+                    },
+                    false
+                );
+            }
+        }
+
+        //注册事件监听 
+        connectWebViewJavascriptBridge(function(bridge) {
+
+            //init方法是默认接收方法
+            bridge.init(function(message, responseCallback) {
+                document.getElementById("show").innerHTML = ("init: = " + message);
+                if (responseCallback) {
+                    responseCallback("我是JS我接收到了init传来的数据！");
+                }
+            });
+
+            //注册一个方法名为AndroidToJS的方法来接收原生传来的数据
+            bridge.registerHandler("AndroidToJS", function(data, responseCallback) {
+                document.getElementById("show").innerHTML = ("AndroidToJS: = " + data);
+                if (responseCallback) {
+                    responseCallback("我是JS我接收到了AndroidToJS传来的数据！");
+                }
+            });
+
+        })
+
+</script>
+
+</html>
+
