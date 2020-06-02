@@ -1,0 +1,48 @@
+/* 全局样式表 */
+html,
+body,
+#app {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.titleBar {
+  height: 3rem;
+  background-color: #016763;
+  display: flex;
+
+  .pp1 {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    .leftArrowIV {
+      color: white;
+      margin-left: 0.2rem;
+      padding: 0.4rem;
+    }
+  }
+  .pp2 {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .title-center {
+      color: white;
+      font-size: 0.9rem;
+    }
+  }
+  .pp3 {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    span {
+      color: white;
+      font-size: 0.8rem;
+      margin-right: 1rem;
+    }
+  }
+}
